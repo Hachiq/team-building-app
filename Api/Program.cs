@@ -1,3 +1,6 @@
+using Api.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Api
 {
     public class Program
@@ -6,7 +9,13 @@ namespace Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var appConnectionString = builder.Configuration.
+                GetConnectionString("AppDbContextConnection")
+                ?? throw new InvalidOperationException("Connection string 'AppDbContextConnection' not found.");
+
             // Add services to the container.
+
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(appConnectionString));
 
             builder.Services.AddControllers();
 

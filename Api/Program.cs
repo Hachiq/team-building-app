@@ -1,4 +1,5 @@
 using Api.Data;
+using Api.Services.UserService;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api
@@ -16,6 +17,8 @@ namespace Api
             // Add services to the container.
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(appConnectionString));
+
+            builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddControllers();
 

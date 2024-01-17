@@ -56,17 +56,24 @@ namespace Api.Controllers
                 return BadRequest("User not found or wrong password.");
             }
 
-            string token = CreateToken(user);
+            var roles = await _userService.GetUserRolesAsync(user.Id);
+
+            string token = CreateToken(user, roles);
             return Ok(token);
         }
 
-        private string CreateToken(User user)
+        private string CreateToken(User user, IEnumerable<string> roles)
         {
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username)
             };
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

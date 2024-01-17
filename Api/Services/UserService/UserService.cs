@@ -22,6 +22,16 @@ namespace Api.Services.UserService
         {
             await _db.Users.AddAsync(user);
             await _db.SaveChangesAsync();
-        }   
+        }
+
+        public async Task<IEnumerable<string>> GetUserRolesAsync(int userId)
+        {
+            var user = await _db.Users
+                .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            return user?.UserRoles.Select(ur => ur.Role.Name) ?? Enumerable.Empty<string>();
+        }
     }
 }

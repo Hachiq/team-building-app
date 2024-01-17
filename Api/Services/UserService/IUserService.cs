@@ -6,5 +6,6 @@ namespace Api.Services.UserService
     {
         Task<User> GetUserByUsernameAsync(string username);
         Task AddUserAsync(User user);
+        Task<IEnumerable<string>> GetUserRolesAsync(int userId);
     }
 }

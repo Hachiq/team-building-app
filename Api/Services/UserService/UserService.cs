@@ -33,5 +33,15 @@ namespace Api.Services.UserService
 
             return user?.UserRoles.Select(ur => ur.Role.Name) ?? Enumerable.Empty<string>();
         }
+
+        public async Task AssignUserToRoleAsync(User user)
+        {
+            await _db.UserRoles.AddAsync(new UserRole
+            {
+                UserId = user.Id,
+                RoleId = 3
+            });
+            await _db.SaveChangesAsync();
+        }
     }
 }

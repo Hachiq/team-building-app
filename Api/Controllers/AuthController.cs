@@ -44,6 +44,7 @@ namespace Api.Controllers
             };
 
             await _userService.AddUserAsync(newUser);
+            await _userService.AssignUserToRoleAsync(newUser);
             return Ok();
         }
 

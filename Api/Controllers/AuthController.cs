@@ -24,6 +24,14 @@ namespace Api.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterDto request)
         {
+            if (await IsTaken(request.Username))
+            {
+                return Conflict("Such username already exists");
+            }
+            if (!IsValid(request))
+            {
+                return BadRequest("Cannot register");
+            }
 
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
@@ -93,6 +101,21 @@ namespace Api.Controllers
                 var computedHach = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 return computedHach.SequenceEqual(passwordHash);
             }
+        }
+
+        private async Task<bool> IsTaken(string username)
+        {
+            var user = await _userService.GetUserByUsernameAsync(username);
+            return user is not null;
+        }
+
+        private bool IsValid(RegisterDto request)
+        {
+            if (request.Username.Length >= 4 && request.Password.Length >= 6)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

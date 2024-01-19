@@ -1,0 +1,16 @@
+.form-control-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+}
+.form-container {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    height: 80vh; /* 80% of the viewport height */
+}
+.loginButton {
+    width: 300px;
+}
+mat-form-field {
+    width: 300px;
+}

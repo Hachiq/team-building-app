@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Register } from 'src/app/models/register';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,18 +9,51 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  hide = true;
+  user: Register = {
+    username: '',
+    email: '',
+    password: ''
+  }
+
+  constructor(private authService: AuthService) { }
   
-  username = new FormControl('', [Validators.required, Validators.minLength(4)]);
+  hide = true;
+
+  username = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]);
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(6)]);
+
+  register(){
+    this.authService.register(this.user).subscribe(() => {},
+      (error) => {
+        if (error.status === 409){
+          this.username.setErrors({ conflict: true });
+        }
+        else {
+          console.log('Undefined error. Please, try again later.');
+        }
+      }
+    );
+  }
 
   getUsernameErrorMessage() {
     if (this.username.hasError('required')) {
       return 'You must enter a value';
     }
 
-    return this.username.hasError('minlength') ? 'Name too short' : '';
+    if (this.username.hasError('conflict')) {
+      return 'Username is taken';
+    }
+
+    if (this.username.hasError('minlength')){
+      return 'Name too short';
+    }
+
+    if (this.username.hasError('maxlength')){
+      return 'Name too long';
+    }
+    
+    return '';
   }
 
   getEmailErrorMessage() {

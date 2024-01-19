@@ -119,7 +119,7 @@ namespace Api.Controllers
 
         private bool IsValid(RegisterDto request)
         {
-            if (request.Username.Length >= 4 && request.Password.Length >= 6)
+            if (request.Username.Length >= 4 && request.Username.Length <= 50 && request.Password.Length >= 6)
             {
                 return true;
             }

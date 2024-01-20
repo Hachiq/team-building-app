@@ -9,12 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  user: Register = {
-    username: '',
-    email: '',
-    password: ''
-  }
-
+  
   constructor(private authService: AuthService) { }
   
   hide = true;
@@ -24,7 +19,11 @@ export class RegisterComponent {
   password = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
   register(){
-    this.authService.register(this.user).subscribe(() => {},
+    this.authService.register({
+      username: this.username.value,
+      email: this.email.value,
+      password: this.password.value
+    }).subscribe(() => {},
       (error) => {
         if (error.status === 409){
           this.username.setErrors({ conflict: true });

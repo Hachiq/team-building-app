@@ -9,10 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  user: Login = {
-    username: '',
-    password: ''
-  }
 
   hide = true;
 
@@ -22,7 +18,10 @@ export class LoginComponent {
   constructor(private authService: AuthService) { }
 
   login() {
-    this.authService.login(this.user).subscribe((token: string) => {
+    this.authService.login({
+      username: this.username.value,
+      password: this.password.value
+    }).subscribe((token: string) => {
       localStorage.setItem('authToken', token);
     },
       (error) => {

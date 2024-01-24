@@ -13,6 +13,11 @@ namespace Api.Services.UserService
             _db = db;
         }
 
+        public async Task<List<User>> GetUsersAsync()
+        {
+            return await _db.Users.ToListAsync();
+        }
+
         public async Task<User> GetUserByUsernameAsync(string username)
         {
             return await _db.Users.FirstOrDefaultAsync(u => u.Username == username);

@@ -22,7 +22,7 @@ export class LoginComponent {
       username: this.username.value,
       password: this.password.value
     }).subscribe((token: string) => {
-      localStorage.setItem('authToken', token);
+      this.authService.setToken(token);
     },
       (error) => {
         if(error.status === 400){

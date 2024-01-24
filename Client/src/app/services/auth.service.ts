@@ -10,6 +10,8 @@ import { Login } from '../models/login';
 })
 export class AuthService {
 
+  private JsonWebToken?: string | null;
+
   constructor(private http: HttpClient) { }
 
   public register(user: Register): Observable<any> {
@@ -23,5 +25,19 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/Auth/login`, user, {
       responseType: 'text',
     });
+  }
+
+  public getToken(): string | null | undefined {
+    return this.JsonWebToken;
+  }
+
+  public setToken(token: string): void {
+    this.JsonWebToken = token;
+    console.log(`U are logged in. Token: ${this.JsonWebToken}`);
+  }
+
+  public clearToken(): void {
+    this.JsonWebToken = null;
+    console.log(`U are logged out. Token: ${this.JsonWebToken}`);
   }
 }

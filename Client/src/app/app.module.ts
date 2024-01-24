@@ -17,9 +17,6 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
-import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -41,11 +38,7 @@ import { EffectsModule } from '@ngrx/effects';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    MatFormFieldModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    }),
-    EffectsModule.forRoot([])
+    MatFormFieldModule
   ],
   providers: [
     {

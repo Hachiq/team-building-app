@@ -4,6 +4,7 @@ import { Register } from '../models/register';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { Login } from '../models/login';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,17 +28,25 @@ export class AuthService {
     });
   }
 
+  public refreshToken(): Observable<string> {
+    return this.http.get(`${environment.apiUrl}/Auth/refresh-token`, { responseType: 'text', withCredentials: true }).pipe(
+      tap((response) => {
+        const newToken = response;
+
+        this.setToken(newToken);
+      })
+    );
+  }
+
   public getToken(): string | null | undefined {
     return this.JsonWebToken;
   }
 
   public setToken(token: string): void {
     this.JsonWebToken = token;
-    console.log(`U are logged in. Token: ${this.JsonWebToken}`);
   }
 
   public clearToken(): void {
     this.JsonWebToken = null;
-    console.log(`U are logged out. Token: ${this.JsonWebToken}`);
   }
 }

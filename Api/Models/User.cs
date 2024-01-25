@@ -17,6 +17,9 @@ namespace Api.Models
         public byte[] PasswordHash { get; set; }
         [Required]
         public byte[] PasswordSalt { get; set; }
+        public string RefreshToken { get; set; } = string.Empty;
+        public DateTime TokenCreated { get; set; }
+        public DateTime TokenExpires { get; set; }
         public List<UserRole> UserRoles { get; set; }
         public Team? Team { get; set; }
         public Stats? Stats { get; set; }

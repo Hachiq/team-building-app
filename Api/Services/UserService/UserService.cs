@@ -23,6 +23,21 @@ namespace Api.Services.UserService
             return await _db.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
 
+        public async Task<User> GetUserByRefreshTokenAsync(string refreshToken)
+        {
+            return await _db.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+        }
+
+        public async Task UpdateUserRefreshToken(User user, RefreshToken refreshToken)
+        {
+            user.RefreshToken = refreshToken.Token;
+            user.TokenCreated = refreshToken.Created;
+            user.TokenExpires = refreshToken.Expires;
+
+            _db.Users.Update(user);
+            await _db.SaveChangesAsync();
+        }
+
         public async Task AddUserAsync(User user)
         {
             await _db.Users.AddAsync(user);

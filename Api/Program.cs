@@ -41,9 +41,14 @@ namespace Api
             builder.Services.AddCors(options => options.AddPolicy(name: "NgOrigins",
                     policy =>
                     {
-                        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
                     }
                 ));
+
+            builder.Services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             var app = builder.Build();
 

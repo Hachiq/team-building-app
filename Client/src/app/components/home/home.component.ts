@@ -10,11 +10,13 @@ import { UserService } from 'src/app/services/user.service';
 export class HomeComponent {
   users?: DisplayUser[];
   
-  constructor (private userService: UserService) {
-    this.loadUsers();
-   }
+  constructor (private userService: UserService) { }
 
-  loadUsers(){
+  ngOnInit() {
+    this.loadUsers();
+  }
+
+  loadUsers() {
     this.userService
       .get()
       .subscribe((result: DisplayUser[]) => this.users = result);

@@ -38,6 +38,13 @@ namespace Api.Services.UserService
             await _db.SaveChangesAsync();
         }
 
+        public async Task ExpireRefreshToken(User user)
+        {
+            user.TokenExpires = DateTime.Now;
+            _db.Users.Update(user);
+            await _db.SaveChangesAsync();
+        }
+
         public async Task AddUserAsync(User user)
         {
             await _db.Users.AddAsync(user);

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Register } from 'src/app/models/register';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

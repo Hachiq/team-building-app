@@ -8,6 +8,7 @@ namespace Api.Services.UserService
         Task<User> GetUserByUsernameAsync(string username);
         Task<User> GetUserByRefreshTokenAsync(string refreshToken);
         Task UpdateUserRefreshToken(User user, RefreshToken refreshToken);
+        Task ExpireRefreshToken(User user);
         Task AddUserAsync(User user);
         Task<IEnumerable<string>> GetUserRolesAsync(int userId);
         Task AssignUserToRoleAsync(User user);

@@ -89,6 +89,31 @@ namespace Api.Controllers
             return Ok(token);
         }
 
+        [HttpPost("logout")]
+        public async Task<ActionResult> Logout()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+
+            var user = await _userService.GetUserByRefreshTokenAsync(refreshToken);
+
+            if (user is null)
+            {
+                return Unauthorized("Invalid Refresh Token.");
+            }
+
+            await _userService.ExpireRefreshToken(user);
+
+            Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = DateTime.Now,
+                SameSite = SameSiteMode.None,
+                Secure = true
+            });
+
+            return Ok();
+        }
+
         private RefreshToken GenerateRefreshToken()
         {
             var refreshToken = new RefreshToken()
@@ -133,7 +158,7 @@ namespace Api.Controllers
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.Now.AddMinutes(7),
                 signingCredentials: creds
                 );
 

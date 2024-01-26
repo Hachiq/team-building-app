@@ -14,7 +14,6 @@ export class AuthService {
 
   private tokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   JsonWebToken$: Observable<string | null> = this.tokenSubject.asObservable();
-  // private JsonWebToken?: string | null;
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +28,15 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/Auth/login`, user, {
       responseType: 'text',
     });
+  }
+
+  public logout(): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/Auth/logout`, { }).pipe(
+      tap(() => {
+        this.clearToken();
+        console.log("Token: " + this.getToken());
+      })
+    );
   }
 
   public refreshToken(): Observable<string> {

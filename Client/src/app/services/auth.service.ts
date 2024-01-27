@@ -26,7 +26,8 @@ export class AuthService {
 
   public login(user: Login): Observable<string> {
     return this.http.post(`${environment.apiUrl}/Auth/login`, user, {
-      responseType: 'text',
+      responseType: 'text', 
+      withCredentials: true
     });
   }
 
@@ -44,7 +45,10 @@ export class AuthService {
   }
 
   public refreshToken(): Observable<string> {
-    return this.http.get(`${environment.apiUrl}/Auth/refresh-token`, { responseType: 'text', withCredentials: true }).pipe(
+    return this.http.get(`${environment.apiUrl}/Auth/refresh-token`, { 
+      responseType: 'text', 
+      withCredentials: true 
+    }).pipe(
       tap((response) => {
         const newToken = response;
         this.setToken(newToken);

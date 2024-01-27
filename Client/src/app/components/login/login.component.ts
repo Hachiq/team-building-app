@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent {
   username = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   login() {
     this.authService.login({
@@ -22,7 +23,7 @@ export class LoginComponent {
       password: this.password.value
     }).subscribe((token: string) => {
       this.authService.setToken(token);
-      // this.router.navigate(['home']); --> I need to hit login twice so that refresh token sets.
+      this.router.navigate(['home']);
     },
       (error) => {
         if(error.status === 400){

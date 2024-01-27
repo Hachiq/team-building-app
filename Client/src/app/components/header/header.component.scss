@@ -6,4 +6,11 @@
 }
 a {
     text-decoration: none;
+    color: gray;
+    transition: 200ms;
+}
+
+a:hover {
+    color: goldenrod;
+    transition: 200ms;
 }

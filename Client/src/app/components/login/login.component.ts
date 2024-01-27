@@ -22,6 +22,7 @@ export class LoginComponent {
       password: this.password.value
     }).subscribe((token: string) => {
       this.authService.setToken(token);
+      // this.router.navigate(['home']); --> I need to hit login twice so that refresh token sets.
     },
       (error) => {
         if(error.status === 400){

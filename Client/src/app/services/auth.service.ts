@@ -34,9 +34,13 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/Auth/logout`, { }).pipe(
       tap(() => {
         this.clearToken();
-        console.log("Token: " + this.getToken());
       })
     );
+  }
+
+  public isAuthenticated(): boolean {
+    const token = this.tokenSubject.value;
+    return !!token;
   }
 
   public refreshToken(): Observable<string> {

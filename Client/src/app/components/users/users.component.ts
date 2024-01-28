@@ -10,7 +10,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrl: './users.component.scss'
 })
 export class UsersComponent {
-  users?: DisplayUser[];
+  users!: DisplayUser[];
+  displayedColumns: string[] = [ 'id', 'username', 'firstName', 'lastName', 'email'];
+
   tokenSubscription: Subscription | undefined;
   
   constructor (private userService: UserService, private authService: AuthService) { }

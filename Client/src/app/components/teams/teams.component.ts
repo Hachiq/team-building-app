@@ -8,7 +8,8 @@ import { TeamService } from 'src/app/services/team.service';
   styleUrl: './teams.component.scss'
 })
 export class TeamsComponent {
-  teams?: DisplayTeam[];
+  teams!: DisplayTeam[];
+  displayedColumns: string[] = [ 'name', 'numberOfMembers'];
 
   constructor(private teamService: TeamService) { }
 

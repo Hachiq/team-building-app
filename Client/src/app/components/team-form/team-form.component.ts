@@ -9,7 +9,7 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrl: './team-form.component.scss'
 })
 export class TeamFormComponent {
-  name = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]);
+  name = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]);
 
   constructor (private teamService: TeamService, private tokenService: TokenService) { }
 

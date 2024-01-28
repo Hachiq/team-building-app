@@ -1,9 +1,13 @@
 .container {
-    display: flex; /* Use Flexbox */
-    justify-content: space-between; /* Distribute items evenly */
-    margin: 20px;
-  }
+  display: flex; /* Use Flexbox */
+  justify-content: space-between; /* Distribute items evenly */
+  margin: 20px;
+}
   
-  .teams-table, .team-form {
-    width: 45%; /* Set width for each item */
-  }
+.teams-table, .team-form {
+  width: 45%; /* Set width for each item */
+}
+
+table {
+  width: 100%;
+}

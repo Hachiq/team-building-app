@@ -12,6 +12,7 @@
     class="createButton" 
     mat-raised-button color="primary"
     (click)="create()"
+    [disabled]="name.invalid"
 >
     Create
 </button>

@@ -1,10 +1,12 @@
 ﻿using Api.DTOs;
+using Api.Mappers;
 using Api.Models;
 using Api.Services.TeamService;
 using Api.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Api.Controllers
 {
@@ -14,16 +16,23 @@ namespace Api.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
+        private readonly TeamMapper _mapper;
 
-        public TeamController(ITeamService teamService, IUserService userService)
+        public TeamController(ITeamService teamService, IUserService userService, TeamMapper mapper)
         {
             _teamService = teamService;
             _userService = userService;
+            _mapper = mapper;
         }
         [HttpGet("all")]
         public async Task<ActionResult<List<Team>>> Get()
         {
-            return await _teamService.GetTeamsAsync();
+            var teams = await _teamService.GetTeamsAsync();
+            if (teams.IsNullOrEmpty())
+            {
+                return NoContent();
+            }
+            return Ok(_mapper.MapTeamListToDtoList(teams));
         }
         [Authorize]
         [HttpPost("create")]

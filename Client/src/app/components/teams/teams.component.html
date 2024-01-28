@@ -4,14 +4,14 @@
             <caption>List of teams</caption>
             <thead>
                 <tr>
-                    <th scope="col" style="min-width: 50px;">#</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Number of members</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let team of teams">
-                    <th scope="row">{{ team.id }}</th>
                     <td>{{ team.name }}</td>
+                    <td>{{ team.numberOfMembers }}</td>
                 </tr>
                 </tbody>
         </table>

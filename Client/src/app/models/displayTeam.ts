@@ -1,4 +1,4 @@
 export class DisplayTeam {
-    id!: number;
     name!: string;
+    numberOfMembers!: number;
 }

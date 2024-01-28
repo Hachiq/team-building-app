@@ -15,7 +15,7 @@ namespace Api.Services.TeamService
 
         public async Task<List<Team>> GetTeamsAsync()
         {
-            return await _db.Teams.ToListAsync();
+            return await _db.Teams.Include(t => t.Users).ToListAsync();
         }
 
         public async Task<Team> GetTeamByNameAsync(string name) 

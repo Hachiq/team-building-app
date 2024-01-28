@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { TeamsComponent } from './components/teams/teams.component';
+import { TeamFormComponent } from './components/team-form/team-form.component';
 import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { UsersComponent } from './components/users/users.component';
     RegisterComponent,
     LogoutComponent,
     TeamsComponent,
+    TeamFormComponent,
     UsersComponent
   ],
   imports: [

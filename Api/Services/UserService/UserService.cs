@@ -17,6 +17,10 @@ namespace Api.Services.UserService
         {
             return await _db.Users.ToListAsync();
         }
+        public async Task<User> GetUserByIdAsync(int id)
+        {
+            return await _db.Users.Include(u => u.Team).FirstOrDefaultAsync(u => u.Id == id);
+        }
 
         public async Task<User> GetUserByUsernameAsync(string username)
         {
@@ -61,12 +65,21 @@ namespace Api.Services.UserService
             return user?.UserRoles.Select(ur => ur.Role.Name) ?? Enumerable.Empty<string>();
         }
 
-        public async Task AssignUserToRoleAsync(User user)
+        public async Task AssignUserToUserRoleAsync(User user)
         {
             await _db.UserRoles.AddAsync(new UserRole
             {
                 UserId = user.Id,
                 RoleId = 3
+            });
+            await _db.SaveChangesAsync();
+        }
+        public async Task AssignUserToLeaderRoleAsync(User user)
+        {
+            await _db.UserRoles.AddAsync(new UserRole
+            {
+                UserId = user.Id,
+                RoleId = 2
             });
             await _db.SaveChangesAsync();
         }

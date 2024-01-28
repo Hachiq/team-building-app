@@ -17,5 +17,17 @@ namespace Api.Services.TeamService
         {
             return await _db.Teams.ToListAsync();
         }
+
+        public async Task<Team> GetTeamByNameAsync(string name) 
+        {
+            return await _db.Teams.FirstOrDefaultAsync(t => t.Name == name);
+        }
+
+        public async Task CreateTeamAsync(Team team, User user)
+        {
+            team.Users.Add(user);
+            await _db.Teams.AddAsync(team);
+            await _db.SaveChangesAsync();
+        }
     }
 }

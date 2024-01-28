@@ -1,0 +1,17 @@
+<p style="color: bisque; font-size: 20px; height: 50px;">Can`t find a team? Create one..</p>
+<div class="form-control-container">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name of the team" [formControl]="name" required>
+        @if (name.invalid) {
+            <mat-error>{{getNameErrorMessage()}}</mat-error>
+        }
+    </mat-form-field>
+</div>
+<button 
+    class="createButton" 
+    mat-raised-button color="primary"
+    (click)="create()"
+>
+    Create
+</button>

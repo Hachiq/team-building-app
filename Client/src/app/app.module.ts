@@ -18,6 +18,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { TeamsComponent } from './components/teams/teams.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    TeamsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

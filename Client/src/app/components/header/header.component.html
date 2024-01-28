@@ -1,8 +1,12 @@
 <mat-toolbar>
 
     <a routerLink="/">Home</a>
+    <span class="secondary-spacer"></span>
+    <a routerLink="/teams">Teams</a>
+    <span class="secondary-spacer"></span>
+    <a routerLink="/users">Users</a>
 
-    <!-- Log in and Register links on the left -->
+    <!-- Log in and Register links on the right -->
     <span class="main-spacer"></span>
     
     <div *ngIf="!userIsAuthenticated()">

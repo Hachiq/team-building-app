@@ -1,4 +1,5 @@
 using Api.Data;
+using Api.Services.TeamService;
 using Api.Services.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace Api
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(appConnectionString));
 
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ITeamService, TeamService>();
 
             builder.Services.AddControllers();
 

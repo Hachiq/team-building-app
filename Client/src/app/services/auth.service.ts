@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Register } from '../models/register';
+import { Register } from '../interfaces/register';
+import { Login } from '../interfaces/login';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
-import { Login } from '../models/login';
 import { tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 

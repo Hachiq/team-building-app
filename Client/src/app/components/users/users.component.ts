@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DisplayUser } from 'src/app/models/displayUser';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrl: './users.component.scss'
 })
 export class UsersComponent {
-  users!: DisplayUser[];
+  users!: User[];
   displayedColumns: string[] = [ 'id', 'username', 'firstName', 'lastName', 'email'];
 
   tokenSubscription: Subscription | undefined;
@@ -34,6 +34,6 @@ export class UsersComponent {
   loadUsers() {
     this.userService
       .get()
-      .subscribe((result: DisplayUser[]) => this.users = result);
+      .subscribe((result: User[]) => this.users = result);
   }
 }

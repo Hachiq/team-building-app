@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DisplayTeam } from 'src/app/models/displayTeam';
+import { Team } from 'src/app/models/team';
 import { TeamService } from 'src/app/services/team.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { TeamService } from 'src/app/services/team.service';
   styleUrl: './teams.component.scss'
 })
 export class TeamsComponent {
-  teams!: DisplayTeam[];
+  teams!: Team[];
   displayedColumns: string[] = [ 'name', 'numberOfMembers'];
 
   constructor(private teamService: TeamService) { }

@@ -9,7 +9,7 @@ import { TeamService } from 'src/app/services/team.service';
 })
 export class TeamsComponent {
   teams!: Team[];
-  displayedColumns: string[] = [ 'name', 'numberOfMembers'];
+  displayedColumns: string[] = [ 'name', 'leader', 'numberOfMembers'];
 
   constructor(private teamService: TeamService) { }
 

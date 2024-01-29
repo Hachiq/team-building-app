@@ -14,7 +14,9 @@ namespace Api.Mappers
 
             return new TeamDto
             {
+                Id = team.Id,
                 Name = team.Name,
+                Leader = team.Users.SingleOrDefault(user => user.UserRoles.Any(userRole => userRole.RoleId == 2)).Username,
                 NumberOfMembers = team.Users.Count
             };
         }

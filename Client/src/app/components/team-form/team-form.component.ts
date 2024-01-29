@@ -29,6 +29,9 @@ export class TeamFormComponent {
             this.name.setErrors({ userAlreadyInTeam: true });
           }
         }
+        else if (error.status === 401) {
+          this.name.setErrors({ unauthorized: true })
+        }
         else {
           console.log('Undefined error. Please, try again later.');
         }
@@ -39,6 +42,10 @@ export class TeamFormComponent {
   getNameErrorMessage() {
     if (this.name.hasError('required')) {
       return 'You must enter a value';
+    }
+
+    if (this.name.hasError('unauthorized')){
+      return 'Please, log in before creating a team';
     }
 
     if (this.name.hasError('namingConflict')) {

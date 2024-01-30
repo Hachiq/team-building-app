@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TeamService } from 'src/app/services/team.service';
 import { TokenService } from 'src/app/services/token.service';
@@ -9,6 +9,8 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrl: './team-form.component.scss'
 })
 export class TeamFormComponent {
+  @Output() onCreate: EventEmitter<void> = new EventEmitter<void>();
+
   name = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]);
 
   constructor (private teamService: TeamService, private tokenService: TokenService) { }
@@ -17,7 +19,9 @@ export class TeamFormComponent {
     this.teamService.create({
       userId: this.tokenService.getUserIdFromToken(),
       name: this.name.value
-    }).subscribe(() => {},
+    }).subscribe(() => {
+      this.onCreate.emit();
+    },
       (error) => {
         if (error.status === 409){
           const reason = error.error.reason;

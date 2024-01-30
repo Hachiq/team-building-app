@@ -25,7 +25,7 @@ namespace Api.Controllers
             _mapper = mapper;
         }
         [HttpGet("all")]
-        public async Task<ActionResult<List<Team>>> Get()
+        public async Task<ActionResult<List<TeamDto>>> Get()
         {
             var teams = await _teamService.GetTeamsAsync();
             if (teams.IsNullOrEmpty())
@@ -40,7 +40,7 @@ namespace Api.Controllers
         {
             if (await IsTaken(request.Name))
             {
-                return Conflict(new { message = "Team with such name already exist", reason = "NameTaken"});
+                return Conflict(new { message = "Team with such name already exist", reason = "NameTaken" });
             }
             if (!IsValid(request.Name))
             {

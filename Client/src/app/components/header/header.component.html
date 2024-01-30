@@ -4,7 +4,7 @@
     <span class="secondary-spacer"></span>
     <a routerLink="/teams">Teams</a>
     <span class="secondary-spacer"></span>
-    <a routerLink="/users">Users</a>
+    <a routerLink="/users" *ngIf="userIsAuthenticated()">Users</a>
 
     <!-- Log in and Register links on the right -->
     <span class="main-spacer"></span>

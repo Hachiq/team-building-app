@@ -6,6 +6,7 @@ namespace Api.Services.TeamService
     {
         Task<List<Team>> GetTeamsAsync();
         Task<Team> GetTeamByNameAsync(string name);
+        Task<Team> GetTeamByIdAsync(int id);
         Task CreateTeamAsync(Team team, User user);
     }
 }

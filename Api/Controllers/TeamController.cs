@@ -34,6 +34,21 @@ namespace Api.Controllers
             }
             return Ok(_mapper.MapTeamListToDtoList(teams));
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TeamDto>> GetById(int id)
+        {
+            var team = await _teamService.GetTeamByIdAsync(id);
+            if (team == null)
+            {
+                return NotFound();
+            }
+            return Ok(_mapper.MapTeamToDto(team));
+        }
+        [HttpGet("{id}/users")]
+        public async Task<ActionResult<List<User>>> GetUsersByTeamId(int id)
+        {
+            return await _userService.GetUsersByTeamIdAsync(id);
+        }
         [Authorize]
         [HttpPost("create")]
         public async Task<ActionResult> Create(TeamRequestDto request)

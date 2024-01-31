@@ -5,6 +5,7 @@ namespace Api.Services.UserService
     public interface IUserService
     {
         Task<List<User>> GetUsersAsync();
+        Task<List<User>> GetUsersByTeamIdAsync(int id);
         Task<User> GetUserByIdAsync(int id);
         Task<User> GetUserByUsernameAsync(string username);
         Task<User> GetUserByRefreshTokenAsync(string refreshToken);

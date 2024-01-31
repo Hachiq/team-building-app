@@ -23,5 +23,10 @@ namespace Api.Controllers
         {
             return await _userService.GetUsersAsync();
         }
+        [HttpGet("{id}")]
+        public async Task<User> GetById(int id)
+        {
+            return await _userService.GetUserByIdAsync(id);
+        }
     }
 }

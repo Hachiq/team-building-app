@@ -18,9 +18,14 @@ namespace Api.Services.TeamService
             return await _db.Teams.Include(t => t.Users).ThenInclude(u => u.UserRoles).ThenInclude(ur => ur.Role).ToListAsync();
         }
 
-        public async Task<Team> GetTeamByNameAsync(string name) 
+        public async Task<Team> GetTeamByNameAsync(string name)
         {
             return await _db.Teams.FirstOrDefaultAsync(t => t.Name == name);
+        }
+
+        public async Task<Team> GetTeamByIdAsync(int id)
+        {
+            return await _db.Teams.Include(t => t.Users).ThenInclude(u => u.UserRoles).ThenInclude(ur => ur.Role).FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task CreateTeamAsync(Team team, User user)

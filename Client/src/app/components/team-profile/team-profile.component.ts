@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Team } from 'src/app/models/team';
+import { User } from 'src/app/models/user';
+import { TeamService } from 'src/app/services/team.service';
 
 @Component({
   selector: 'app-team-profile',
@@ -9,11 +12,24 @@ import { ActivatedRoute } from '@angular/router';
 export class TeamProfileComponent {
   teamId!: number;
 
-  constructor (private route: ActivatedRoute) { }
+  team!: Team;
+  users!: User[];
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
+  constructor (private route: ActivatedRoute, private teamService: TeamService) {
+    route.params.subscribe(params => {
       this.teamId = +params['id']; // Convert to number
     });
+  }
+
+  ngOnInit(){
+    this.loadTeam(this.teamId);
+    this.loadUsers(this.teamId);
+  }
+
+  loadTeam(id: number){
+    this.teamService.getById(id).subscribe((result) => this.team = result);
+  }
+  loadUsers(id: number){
+    this.teamService.getUsersByTeamId(id).subscribe((result) => this.users = result);
   }
 }

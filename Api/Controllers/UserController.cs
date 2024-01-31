@@ -1,4 +1,5 @@
-﻿using Api.Models;
+﻿using Api.Mappers;
+using Api.Models;
 using Api.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -11,22 +12,33 @@ namespace Api.Controllers
     public class UserController : ControllerBase
     {
         private IUserService _userService;
+        private UserMapper _userMapper;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, UserMapper userMapper)
         {
             _userService = userService;
+            _userMapper = userMapper;
         }
 
-        [Authorize]
         [HttpGet("all")]
         public async Task<ActionResult<List<User>>> Get()
         {
-            return await _userService.GetUsersAsync();
+            var users = await _userService.GetUsersAsync();
+            if (users is null)
+            {
+                return NoContent();
+            }
+            return Ok(_userMapper.MapUserListToDtoList(users));
         }
         [HttpGet("{id}")]
-        public async Task<User> GetById(int id)
+        public async Task<ActionResult<User>> GetById(int id)
         {
-            return await _userService.GetUserByIdAsync(id);
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user is null)
+            {
+                return NotFound();
+            }
+            return Ok(_userMapper.MapUserToDto(user));
         }
     }
 }

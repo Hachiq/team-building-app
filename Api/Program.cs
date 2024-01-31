@@ -27,6 +27,7 @@ namespace Api
             builder.Services.AddScoped<ITeamService, TeamService>();
 
             builder.Services.AddScoped<TeamMapper>();
+            builder.Services.AddScoped<UserMapper>();
 
             builder.Services.AddControllers();
 

@@ -16,13 +16,15 @@ namespace Api.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
-        private readonly TeamMapper _mapper;
+        private readonly TeamMapper _teamMapper;
+        private readonly UserMapper _userMapper;
 
-        public TeamController(ITeamService teamService, IUserService userService, TeamMapper mapper)
+        public TeamController(ITeamService teamService, IUserService userService, TeamMapper mapper, UserMapper userMapper)
         {
             _teamService = teamService;
             _userService = userService;
-            _mapper = mapper;
+            _teamMapper = mapper;
+            _userMapper = userMapper;
         }
         [HttpGet("all")]
         public async Task<ActionResult<List<TeamDto>>> Get()
@@ -32,7 +34,7 @@ namespace Api.Controllers
             {
                 return NoContent();
             }
-            return Ok(_mapper.MapTeamListToDtoList(teams));
+            return Ok(_teamMapper.MapTeamListToDtoList(teams));
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<TeamDto>> GetById(int id)
@@ -42,12 +44,17 @@ namespace Api.Controllers
             {
                 return NotFound();
             }
-            return Ok(_mapper.MapTeamToDto(team));
+            return Ok(_teamMapper.MapTeamToDto(team));
         }
         [HttpGet("{id}/users")]
         public async Task<ActionResult<List<User>>> GetUsersByTeamId(int id)
         {
-            return await _userService.GetUsersByTeamIdAsync(id);
+            var users = await _userService.GetUsersByTeamIdAsync(id);
+            if (users is null)
+            {
+                return NoContent();
+            }
+            return Ok(_userMapper.MapUserListToDtoList(users));
         }
         [Authorize]
         [HttpPost("create")]

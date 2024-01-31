@@ -8,6 +8,15 @@
   width: 45%; /* Set width for each item */
 }
 
+.header-row {
+  color: bisque;
+}
+
+.row:hover {
+  cursor: pointer;
+  background-color: #494545;
+}
+
 table {
   width: 100%;
 }

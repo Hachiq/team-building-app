@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Team } from 'src/app/models/team';
 import { TeamService } from 'src/app/services/team.service';
 
@@ -11,7 +12,7 @@ export class TeamsComponent {
   teams!: Team[];
   displayedColumns: string[] = [ 'name', 'leader', 'numberOfMembers'];
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService, private router: Router) { }
 
   ngOnInit() {
     this.loadTeams();

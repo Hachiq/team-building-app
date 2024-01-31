@@ -22,6 +22,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { TeamFormComponent } from './components/team-form/team-form.component';
 import { UsersComponent } from './components/users/users.component';
+import { TeamProfileComponent } from './components/team-profile/team-profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UsersComponent } from './components/users/users.component';
     LogoutComponent,
     TeamsComponent,
     TeamFormComponent,
-    UsersComponent
+    UsersComponent,
+    TeamProfileComponent
   ],
   imports: [
     BrowserModule,

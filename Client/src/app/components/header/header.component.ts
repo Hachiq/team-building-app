@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,5 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent {
 
-  constructor(private authService: AuthService) { }
-
-  userIsAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
-  }
+  constructor(public authService: AuthService, public tokenService: TokenService) { }
 }

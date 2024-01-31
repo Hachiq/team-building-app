@@ -145,6 +145,11 @@ namespace Api.Controllers
                 new Claim(ClaimTypes.Name, user.Username)
             };
 
+            if (user.Team is not null)
+            {
+                claims.Add(new Claim("TeamId", user.Team.Id.ToString()));
+            }
+
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));

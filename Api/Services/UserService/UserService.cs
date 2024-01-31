@@ -30,12 +30,12 @@ namespace Api.Services.UserService
 
         public async Task<User> GetUserByUsernameAsync(string username)
         {
-            return await _db.Users.FirstOrDefaultAsync(u => u.Username == username);
+            return await _db.Users.Include(u => u.Team).FirstOrDefaultAsync(u => u.Username == username);
         }
 
         public async Task<User> GetUserByRefreshTokenAsync(string refreshToken)
         {
-            return await _db.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+            return await _db.Users.Include(u => u.Team).FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
         }
 
         public async Task UpdateUserRefreshToken(User user, RefreshToken refreshToken)

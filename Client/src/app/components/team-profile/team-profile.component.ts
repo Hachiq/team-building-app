@@ -27,9 +27,13 @@ export class TeamProfileComponent {
   }
 
   loadTeam(id: number){
-    this.teamService.getById(id).subscribe((result) => this.team = result);
+    this.teamService
+      .getById(id)
+      .subscribe((result) => this.team = result);
   }
   loadUsers(id: number){
-    this.teamService.getUsersByTeamId(id).subscribe((result) => this.users = result);
+    this.teamService
+      .getUsersByTeamId(id)
+      .subscribe((result) => this.users = result);
   }
 }

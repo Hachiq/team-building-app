@@ -17,4 +17,22 @@ export class TokenService {
     }
     return 0;
   }
+
+  public getUsernameFromToken(): string {
+    const token = this.authService.getToken();
+    if (token) {
+      const decodedToken = jwtDecode<any>(token);
+      return decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    }
+    return '';
+  }
+
+  public getTeamIdFromToken(): number {
+    const token = this.authService.getToken();
+    if (token) {
+      const decodedToken = jwtDecode<any>(token);
+      return parseInt(decodedToken['TeamId'], 10);
+    }
+    return 0;
+  }
 }

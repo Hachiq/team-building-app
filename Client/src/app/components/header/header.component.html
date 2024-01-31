@@ -4,16 +4,21 @@
     <span class="secondary-spacer"></span>
     <a routerLink="/teams">Teams</a>
     <span class="secondary-spacer"></span>
-    <a routerLink="/users" *ngIf="userIsAuthenticated()">Users</a>
+    <a routerLink="/users" *ngIf="authService.isAuthenticated()">Users</a>
 
     <!-- Log in and Register links on the right -->
     <span class="main-spacer"></span>
-    
-    <div *ngIf="!userIsAuthenticated()">
+    <div *ngIf="!authService.isAuthenticated()">
         <a routerLink="/login">Log in</a>
         <span class="secondary-spacer"></span>
         <a routerLink="/register">Register</a>
     </div>
-    <app-logout *ngIf="userIsAuthenticated()"></app-logout>
+    <div *ngIf="authService.isAuthenticated()">
+        <a [matMenuTriggerFor]="menu">{{ tokenService.getUsernameFromToken() }}</a>
+        <mat-menu #menu="matMenu">
+            <button class="menu-item" mat-menu-item [routerLink]="['team-profile', tokenService.getTeamIdFromToken()]">My team</button>
+            <button class="menu-item" mat-menu-item><app-logout></app-logout></button>
+        </mat-menu>
+    </div>
 
 </mat-toolbar>

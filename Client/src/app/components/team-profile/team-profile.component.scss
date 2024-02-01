@@ -1,0 +1,28 @@
+.container {
+    margin: 20px;
+    margin-top: 40px;
+}
+
+.title {
+    color: bisque;
+    font-size: 40px;
+    text-align: center;
+}
+
+.users-table {
+    width: 45%;
+    padding-top: 50px;
+}
+
+.header-row {
+    color: bisque;
+}
+
+.row:hover {
+    cursor: pointer;
+    background-color: #494545;
+}
+
+table {
+    width: 100%;
+}

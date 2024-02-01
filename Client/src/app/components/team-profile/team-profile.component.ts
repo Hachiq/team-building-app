@@ -15,6 +15,8 @@ export class TeamProfileComponent {
   team!: Team;
   users!: User[];
 
+  displayedColumns: string[] = [ 'id', 'username', 'firstName', 'lastName', 'email'];
+
   constructor (private route: ActivatedRoute, private teamService: TeamService) {
     route.params.subscribe(params => {
       this.teamId = +params['id']; // Convert to number

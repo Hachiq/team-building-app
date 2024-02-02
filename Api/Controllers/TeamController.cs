@@ -1,6 +1,7 @@
 ﻿using Api.DTOs;
 using Api.Mappers;
 using Api.Models;
+using Api.Services.RequestService;
 using Api.Services.TeamService;
 using Api.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
@@ -16,15 +17,19 @@ namespace Api.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
+        private readonly IRequestService _requestService;
         private readonly TeamMapper _teamMapper;
         private readonly UserMapper _userMapper;
+        private readonly RequestMapper _requestMapper;
 
-        public TeamController(ITeamService teamService, IUserService userService, TeamMapper mapper, UserMapper userMapper)
+        public TeamController(ITeamService teamService, IUserService userService, TeamMapper mapper, UserMapper userMapper, IRequestService requestService, RequestMapper requestMapper)
         {
             _teamService = teamService;
             _userService = userService;
+            _requestService = requestService;
             _teamMapper = mapper;
             _userMapper = userMapper;
+            _requestMapper = requestMapper;
         }
         [HttpGet("all")]
         public async Task<ActionResult<List<TeamDto>>> Get()
@@ -55,6 +60,16 @@ namespace Api.Controllers
                 return NoContent();
             }
             return Ok(_userMapper.MapUserListToDtoList(users));
+        }
+        [HttpGet("{id}/requests")]
+        public async Task<ActionResult<List<Request>>> GetRequestsByTeamId(int id)
+        {
+            var requests = await _requestService.GetRequestsByTeamIdAsync(id);
+            if (requests is null)
+            {
+                return NoContent();
+            }
+            return Ok(_requestMapper.MapRequestListToDtoList(requests));
         }
         [Authorize]
         [HttpPost("create")]

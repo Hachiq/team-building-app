@@ -49,7 +49,7 @@ namespace Api.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Requests");
+                    b.ToTable("Requests", (string)null);
                 });
 
             modelBuilder.Entity("Api.Models.Role", b =>
@@ -66,7 +66,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("Api.Models.Stats", b =>
@@ -85,7 +85,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Stats");
+                    b.ToTable("Stats", (string)null);
                 });
 
             modelBuilder.Entity("Api.Models.Team", b =>
@@ -103,7 +103,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Teams", (string)null);
                 });
 
             modelBuilder.Entity("Api.Models.User", b =>
@@ -156,7 +156,7 @@ namespace Api.Data.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Api.Models.UserRole", b =>
@@ -171,7 +171,7 @@ namespace Api.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Api.Models.Request", b =>

@@ -1,0 +1,33 @@
+.container {
+    margin: 20px;
+    margin-top: 40px;
+}
+
+.title {
+    color: bisque;
+    font-size: 40px;
+    text-align: center;
+}
+
+.requests-table {
+    width: 45%;
+    padding-top: 50px;
+}
+
+a {
+    text-decoration: none;
+    opacity: 80%;
+}
+
+a:hover {
+    opacity: 100%;
+    cursor: pointer;
+}
+
+.accept-link {
+    color: lightgreen;
+}
+
+.decline-link {
+    color: red;
+}

@@ -1,5 +1,24 @@
 <div class="container">
     <p class="title">{{ team.name }}</p>
+    <div class="requests-button-section">
+      <button
+        class="requests-button"
+        mat-raised-button color="accent"
+        [routerLink]="['requests']"
+      >
+        Requests for joining
+      </button>
+    </div>
+    <div class="join-button-section">
+      <button 
+        class="join-button" 
+        mat-raised-button color="primary"
+        (click)="createRequest()"
+      >
+        Join the team
+      </button>
+      <p class="text-helper">Your request can be accepted by the leader of the team.</p>
+    </div>
     <div class="users-table">
         <table mat-table [dataSource]="users" class="mat-elevation-z8">
           
@@ -9,7 +28,7 @@
             </ng-container>
 
             <ng-container matColumnDef="username">
-              <th mat-header-cell *matHeaderCellDef> Usernamne </th>
+              <th mat-header-cell *matHeaderCellDef> Username </th>
               <td mat-cell *matCellDef="let user"> {{user.username}} </td>
             </ng-container>
           

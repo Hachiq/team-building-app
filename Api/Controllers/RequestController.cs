@@ -4,11 +4,13 @@ using Api.Models;
 using Api.Services.RequestService;
 using Api.Services.TeamService;
 using Api.Services.UserService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RequestController : ControllerBase
@@ -25,28 +27,24 @@ namespace Api.Controllers
             _teamService = teamService;
             _userService = userService;
         }
-        [HttpGet("{teamId}")]
-        public async Task<ActionResult<List<Request>>> Get(int teamId)
-        {
-            if (teamId is 0)
-            {
-                return BadRequest("Something went wrong.");
-            }
-            var requests = await _requestService.GetRequestsByTeamIdAsync(teamId);
-            return Ok(_requestMapper.MapRequestListToDtoList(requests));
-        }
 
         [HttpPost("create")]
         public async Task<ActionResult> Create(CreateRequestDto joinRequest)
         {
-            if (joinRequest.UserId is 0 || joinRequest.TeamId is 0)
+            if (joinRequest.UserId == 0 || joinRequest.TeamId == 0)
             {
                 return BadRequest("Something went wrong.");
+            }
+            var user = await _userService.GetUserByIdAsync(joinRequest.UserId);
+            if (user.Team is not null)
+            {
+                return Conflict("User is already a member of a team.");
             }
             await _requestService.CreateRequestAsync(joinRequest.UserId, joinRequest.TeamId);
             return Ok();
         }
 
+        [Authorize(Roles = "Leader")]
         [HttpPut("{id}/accept")]
         public async Task<ActionResult> Accept(int id)
         {
@@ -69,6 +67,7 @@ namespace Api.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Leader")]
         [HttpPut("{id}/decline")]
         public async Task<ActionResult> Decline(int id)
         {

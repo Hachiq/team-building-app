@@ -35,4 +35,16 @@ export class TokenService {
     }
     return 0;
   }
+
+  public userIsLeader(): boolean{
+    const token: any = this.authService.getToken();
+    try {
+      const decodedToken: any = jwtDecode(token);
+      const userRoles: string[] = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+  
+      return userRoles && userRoles.includes("Leader");
+    } catch (error) {
+      return false; // Return false on error (invalid token, decoding error, etc.)
+    }
+  }
 }

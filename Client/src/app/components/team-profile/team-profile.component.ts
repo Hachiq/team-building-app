@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from 'src/app/models/team';
 import { User } from 'src/app/models/user';
 import { RequestService } from 'src/app/services/request.service';
@@ -19,7 +19,7 @@ export class TeamProfileComponent {
 
   displayedColumns: string[] = [ 'id', 'username', 'firstName', 'lastName', 'email'];
 
-  constructor (private route: ActivatedRoute, private teamService: TeamService, private requestService: RequestService, private tokenService: TokenService) {
+  constructor (private route: ActivatedRoute, private router: Router, private teamService: TeamService, private requestService: RequestService, private tokenService: TokenService) {
     route.params.subscribe(params => {
       this.teamId = +params['id']; // Convert to number
     });
@@ -36,9 +36,20 @@ export class TeamProfileComponent {
       teamId: this.team.id 
     }).subscribe(() => {},
       (error) => {
+        if (error.status === 401) {
+          this.router.navigate(["login"]);
+        }
         console.log(error.error);
       }
     )
+  }
+
+  canViewRequests(){
+    return this.tokenService.getTeamIdFromToken() == this.team.id;
+  }
+
+  canJoin() {
+    return !this.tokenService.getTeamIdFromToken();
   }
 
   loadTeam(id: number){

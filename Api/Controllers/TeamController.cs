@@ -4,6 +4,7 @@ using Api.Models;
 using Api.Services.RequestService;
 using Api.Services.TeamService;
 using Api.Services.UserService;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -64,6 +65,13 @@ namespace Api.Controllers
         [HttpGet("{id}/requests")]
         public async Task<ActionResult<List<Request>>> GetRequestsByTeamId(int id)
         {
+            // Not sure about using RefreshToken here
+            var user = await _userService.GetUserByRefreshTokenAsync(Request.Cookies["refreshToken"]);
+            if (user.Team.Id != id)
+            {
+                return BadRequest("Not your team.");
+            }
+
             var requests = await _requestService.GetRequestsByTeamIdAsync(id);
             if (requests is null)
             {

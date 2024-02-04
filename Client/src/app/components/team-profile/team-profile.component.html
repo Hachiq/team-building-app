@@ -1,6 +1,6 @@
 <div class="container">
     <p class="title">{{ team.name }}</p>
-    <div class="requests-button-section">
+    <div class="requests-button-section" *ngIf="canViewRequests()">
       <button
         class="requests-button"
         mat-raised-button color="accent"
@@ -9,7 +9,7 @@
         Requests for joining
       </button>
     </div>
-    <div class="join-button-section">
+    <div class="join-button-section" *ngIf="canJoin()">
       <button 
         class="join-button" 
         mat-raised-button color="primary"

@@ -1,5 +1,5 @@
 <div class="container">
-    <p class="title">{{ team.name }}</p>
+    <p class="title" *ngIf="team">{{ team.name }}</p>
     <div class="requests-button-section" *ngIf="canViewRequests()">
       <button
         class="requests-button"
@@ -19,7 +19,7 @@
       </button>
       <p class="text-helper">Your request can be accepted by the leader of the team.</p>
     </div>
-    <div class="users-table">
+    <div class="users-table" *ngIf="team">
         <table mat-table [dataSource]="users" class="mat-elevation-z8">
           
             <ng-container matColumnDef="id">

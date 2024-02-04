@@ -45,7 +45,10 @@ export class TeamProfileComponent {
   }
 
   canViewRequests(){
-    return this.tokenService.getTeamIdFromToken() == this.team.id;
+    if(this.team){
+      return this.tokenService.getTeamIdFromToken() == this.team.id;
+    }
+    return false;
   }
 
   canJoin() {

@@ -7,6 +7,7 @@ import { TeamsComponent } from './components/teams/teams.component';
 import { UsersComponent } from './components/users/users.component';
 import { TeamProfileComponent } from './components/team-profile/team-profile.component';
 import { RequestsComponent } from './components/requests/requests.component';
+import { TeamGuard } from './guards/team.guard';
 
 const routes: Routes = [
   { path: '',   redirectTo: 'home', pathMatch: 'full' },
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: "teams", component: TeamsComponent },
   { path: "users", component: UsersComponent },
   { path: "team-profile/:id", component: TeamProfileComponent },
-  { path: "team-profile/:id/requests", component: RequestsComponent }
+  { path: "team-profile/:id/requests", component: RequestsComponent, canActivate:[TeamGuard] }
 ];
 
 @NgModule({

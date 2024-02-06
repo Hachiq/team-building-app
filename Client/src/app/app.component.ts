@@ -9,9 +9,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'Client';
 
-  constructor (private authService: AuthService) { }
-
-  ngOnInit() {
+  constructor (private authService: AuthService) {
     this.authService.refreshToken().subscribe(() => { 
       console.log("Token refreshed successfully.") 
     }, 
@@ -19,4 +17,13 @@ export class AppComponent {
       console.error("Error refreshing token", error) 
     });
   }
+
+  // ngOnInit() {
+  //   this.authService.refreshToken().subscribe(() => { 
+  //     console.log("Token refreshed successfully.") 
+  //   }, 
+  //   (error) => { 
+  //     console.error("Error refreshing token", error) 
+  //   });
+  // }
 }

@@ -1,5 +1,5 @@
 <div class="container">
-    <p class="title">Requests for {{team.name}}</p>
+    <p class="title" *ngIf="team">Requests for {{team.name}}</p>
     <div class="requests-table">
         <table mat-table [dataSource]="requests" class="mat-elevation-z8">
 

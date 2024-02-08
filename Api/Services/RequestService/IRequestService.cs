@@ -1,4 +1,5 @@
-﻿using Api.Models;
+﻿using Api.DTOs;
+using Api.Models;
 
 namespace Api.Services.RequestService
 {
@@ -10,5 +11,6 @@ namespace Api.Services.RequestService
         Task DeclineRequestAsync(Request request);
         Task AcceptRequestAsync(Request request);
         bool AlreadyProcessed(Request request);
+        Task<bool> RequestIsSpam(CreateJoinRequestDto request);
     }
 }

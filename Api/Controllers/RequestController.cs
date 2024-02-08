@@ -38,7 +38,11 @@ namespace Api.Controllers
             var user = await _userService.GetUserByIdAsync(joinRequest.UserId);
             if (user.Team is not null)
             {
-                return Conflict("User is already a member of a team.");
+                return Conflict(new { message = "User is already a member of a team.", reason = "UserAlreadyInTeam" });
+            }
+            if (await _requestService.RequestIsSpam(joinRequest))
+            {
+                return Conflict(new { message = "You`ve already sent request to that team.", reason = "Spam" });
             }
             await _requestService.CreateRequestAsync(joinRequest.UserId, joinRequest.TeamId);
             return Ok();

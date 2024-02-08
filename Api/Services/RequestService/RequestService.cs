@@ -1,4 +1,5 @@
 ﻿using Api.Data;
+using Api.DTOs;
 using Api.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,20 @@ namespace Api.Services.RequestService
             };
             await _db.AddAsync(request);
             await _db.SaveChangesAsync();
+        }
+
+        public async Task<bool> RequestIsSpam(CreateJoinRequestDto request)
+        {
+            var requestFromDb = await _db.Requests
+                .FirstOrDefaultAsync(r =>
+                    r.UserId == request.UserId &&
+                    r.TeamId == request.TeamId &&
+                    r.Status == RequestStatus.Pending);
+            if (requestFromDb is null)
+            {
+                return false;
+            }
+            return true;
         }
 
         public async Task AcceptRequestAsync(Request request)

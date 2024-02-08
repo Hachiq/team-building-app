@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CreateRequest } from '../interfaces/createRequest';
+import { CreateJoinRequest } from '../interfaces/create.join.request';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,7 +18,7 @@ export class RequestService {
     )
   }
 
-  public create(request: CreateRequest): Observable<any> {
+  public create(request: CreateJoinRequest): Observable<any> {
     return this.http.post<any>(
       `${environment.apiUrl}/request/create`,
       request

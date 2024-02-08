@@ -1,4 +1,4 @@
-export interface CreateRequest {
+export interface CreateJoinRequest {
     userId: number;
     teamId: number;
 }

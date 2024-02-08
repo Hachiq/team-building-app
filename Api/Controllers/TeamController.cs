@@ -74,7 +74,7 @@ namespace Api.Controllers
         }
         [Authorize]
         [HttpPost("create")]
-        public async Task<ActionResult> Create(TeamRequestDto request)
+        public async Task<ActionResult> Create(CreateTeamDto request)
         {
             if (await IsTaken(request.Name))
             {

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Team } from '../models/team';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { TeamRequest } from '../interfaces/teamRequest';
+import { CreateTeam } from '../interfaces/create.team';
 import { User } from '../models/user';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class TeamService {
     )
   }
 
-  public create(request: TeamRequest): Observable<any> {
+  public create(request: CreateTeam): Observable<any> {
     return this.http.post<any>(
       `${environment.apiUrl}/team/create`,
       request

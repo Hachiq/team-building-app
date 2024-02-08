@@ -29,7 +29,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult> Create(CreateRequestDto joinRequest)
+        public async Task<ActionResult> Create(CreateJoinRequestDto joinRequest)
         {
             if (joinRequest.UserId == 0 || joinRequest.TeamId == 0)
             {

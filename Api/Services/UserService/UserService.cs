@@ -58,6 +58,14 @@ namespace Api.Services.UserService
         public async Task AddUserAsync(User user)
         {
             await _db.Users.AddAsync(user);
+            var stats = new Stats
+            {
+                DaysPaid = 0,
+                DaysWorked = 0,
+                Salary = 0,
+                User = user
+            };
+            await _db.Stats.AddAsync(stats);
             await _db.SaveChangesAsync();
         }
 

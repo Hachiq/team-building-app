@@ -21,9 +21,11 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let request">
-                    <a (click)="accept(request.id)" class="accept-link">Accept</a>
-                     / 
-                    <a (click)="decline(request.id)" class="decline-link">Decline</a>
+                    <div *ngIf="request.status == 'Pending'">
+                        <a (click)="accept(request.id)" class="accept-link">Accept</a>
+                        / 
+                        <a (click)="decline(request.id)" class="decline-link">Decline</a>
+                    </div>
                 </td>
             </ng-container>
           

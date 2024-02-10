@@ -32,7 +32,9 @@ export class RequestsComponent {
   accept(id: number){
     this.requestService
       .accept(id)
-      .subscribe(() => {},
+      .subscribe(() => {
+        this.loadRequests(this.teamId);
+      },
         (error) => {
           console.log(error.error);  
         }
@@ -42,7 +44,9 @@ export class RequestsComponent {
   decline(id: number){
     this.requestService
       .decline(id)
-      .subscribe(() => {},
+      .subscribe(() => {
+        this.loadRequests(this.teamId);
+      },
         (error) => {
           console.log(error.error);
         }

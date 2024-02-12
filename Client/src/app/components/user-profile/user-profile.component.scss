@@ -1,0 +1,19 @@
+.layout {
+    margin-top: 40px;
+}
+
+.container {
+    display: flex; /* Use Flexbox */
+    justify-content: space-between; /* Distribute items evenly */
+    margin: 20px;
+}
+
+.stats-container, .credentials-container {
+    width: 45%; /* Set width for each item */
+}
+
+.title {
+    color: bisque;
+    font-size: 40px;
+    text-align: center;
+}

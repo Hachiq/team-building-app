@@ -25,6 +25,7 @@ import { TeamFormComponent } from './components/team-form/team-form.component';
 import { UsersComponent } from './components/users/users.component';
 import { TeamProfileComponent } from './components/team-profile/team-profile.component';
 import { RequestsComponent } from './components/requests/requests.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RequestsComponent } from './components/requests/requests.component';
     TeamFormComponent,
     UsersComponent,
     TeamProfileComponent,
-    RequestsComponent
+    RequestsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

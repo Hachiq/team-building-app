@@ -16,4 +16,10 @@ export class UserService {
       `${environment.apiUrl}/user/all`
     )
   }
+
+  public getById(id: number) : Observable<User> {
+    return this.http.get<User>(
+      `${environment.apiUrl}/user/${id}`
+    )
+  }
 }

@@ -1,4 +1,5 @@
-﻿using Api.Models;
+﻿using Api.DTOs;
+using Api.Models;
 
 namespace Api.Services.UserService
 {
@@ -15,5 +16,6 @@ namespace Api.Services.UserService
         Task<IEnumerable<string>> GetUserRolesAsync(int userId);
         Task AssignUserToUserRoleAsync(User user);
         Task AssignUserToLeaderRoleAsync(User user);
+        Task UpdateUserCredentials(User user, UserCredentialsDto creds);
     }
 }

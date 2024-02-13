@@ -1,4 +1,5 @@
-﻿using Api.Mappers;
+﻿using Api.DTOs;
+using Api.Mappers;
 using Api.Models;
 using Api.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
@@ -39,6 +40,17 @@ namespace Api.Controllers
                 return NotFound();
             }
             return Ok(_userMapper.MapUserToDto(user));
+        }
+        [HttpPut("{id}/update")]
+        public async Task<ActionResult> Update(int id, UserCredentialsDto creds)
+        {
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user is null)
+            {
+                return NotFound();
+            }
+            await _userService.UpdateUserCredentials(user, creds);
+            return Ok();
         }
     }
 }

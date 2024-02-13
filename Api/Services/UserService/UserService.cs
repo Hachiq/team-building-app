@@ -1,4 +1,5 @@
 ﻿using Api.Data;
+using Api.DTOs;
 using Api.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -95,6 +96,14 @@ namespace Api.Services.UserService
                 UserId = user.Id,
                 RoleId = 2
             });
+            await _db.SaveChangesAsync();
+        }
+        public async Task UpdateUserCredentials(User user, UserCredentialsDto creds)
+        {
+            user.FirstName = creds.FirstName; 
+            user.LastName = creds.LastName;
+
+            _db.Users.Update(user);
             await _db.SaveChangesAsync();
         }
     }

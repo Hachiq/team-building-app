@@ -2,6 +2,35 @@
     <p class="title">{{ user?.username }}</p>
     <div class="container">
         <div class="stats-container">Stats</div>
-        <div class="credentials-container">Creds</div>
+        <div class="credentials-container">
+            <form class="form-container">
+                <p style="color: bisque; font-size: 20px; height: 50px;">Profile</p>
+                <div class="form-control-container">
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{ user?.firstName ? user?.firstName : "First name" }}</mat-label>
+                        <input matInput placeholder="First name" [formControl]="firstName">
+                        @if (firstName.invalid) {
+                            <mat-error>{{getFirstNameErrorMessage()}}</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+                <div class="form-control-container">
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{user?.lastName ? user?.lastName : "Last name"}}</mat-label>
+                        <input matInput placeholder="Last name" [formControl]="lastName">
+                        @if (lastName.invalid) {
+                            <mat-error>{{getLastNameErrorMessage()}}</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+                <button 
+                    class="save-button" 
+                    mat-raised-button color="primary"
+                    (click)="save()"
+                >
+                    Save
+                </button>
+            </form>
+        </div>
     </div>
 </div>

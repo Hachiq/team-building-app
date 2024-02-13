@@ -8,12 +8,23 @@
     margin: 20px;
 }
 
-.stats-container, .credentials-container {
-    width: 45%; /* Set width for each item */
+.stats-container {
+    width: 60%; /* Set width for each item */
+}
+
+.credentials-container {
+    width: 30%;
 }
 
 .title {
     color: bisque;
     font-size: 40px;
     text-align: center;
+}
+
+.save-button {
+    width: 300px;
+}
+mat-form-field {
+    width: 300px;
 }

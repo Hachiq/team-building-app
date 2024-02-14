@@ -26,6 +26,18 @@
 .save-button {
     width: 300px;
 }
+
 mat-form-field {
     width: 300px;
+}
+
+tr.mat-mdc-footer-row td {
+    font-weight: bold;
+}
+
+th {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.debt-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }

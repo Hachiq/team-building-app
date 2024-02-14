@@ -69,6 +69,14 @@ export class UserProfileComponent {
     })
   }
 
+  getTotalReceiving(){
+    return this.stats.daysPaid * this.stats.salary;
+  }
+
+  getCompanyDebt(){
+    return (this.stats.daysWorked - this.stats.daysPaid) * this.stats.salary;
+  }
+
   getFirstNameErrorMessage() {
     if (this.firstName.hasError('maxlength')){
       return 'Name too long';

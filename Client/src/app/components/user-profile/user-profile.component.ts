@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Stats } from 'src/app/models/stats';
 import { User } from 'src/app/models/user';
+import { StatsService } from 'src/app/services/stats.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,9 +14,13 @@ import { UserService } from 'src/app/services/user.service';
 export class UserProfileComponent {
   userId!: number;
 
-  user?: User;
+  user!: User;
+  stats!: Stats;
 
-  constructor(private route: ActivatedRoute, private userService: UserService) {
+  statAsDataSource: Stats[] = [];
+  displayedColumns: string[] = [ 'daysWorked', 'daysPaid', 'salary'];
+
+  constructor(private route: ActivatedRoute, private userService: UserService, private statsService: StatsService) {
     route.params.subscribe(params => {
       this.userId = +params['id']; // Convert to number
     });
@@ -25,11 +31,21 @@ export class UserProfileComponent {
 
   ngOnInit() {
     this.loadUser();
+    this.loadStats();
   }
 
   loadUser() {
     this.userService.getById(this.userId)
       .subscribe((result) => this.user = result);
+  }
+
+  loadStats() {
+    this.statsService.getById(this.userId)
+      .subscribe((result) => {
+        this.stats = result,
+        this.statAsDataSource.push(this.stats);    
+      }
+    );
   }
 
   save() {

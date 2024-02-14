@@ -1,6 +1,7 @@
 using Api.Data;
 using Api.Mappers;
 using Api.Services.RequestService;
+using Api.Services.StatsService;
 using Api.Services.TeamService;
 using Api.Services.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -27,10 +28,12 @@ namespace Api
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ITeamService, TeamService>();
             builder.Services.AddScoped<IRequestService, RequestService>();
+            builder.Services.AddScoped<IStatsService, StatsService>();
 
             builder.Services.AddScoped<TeamMapper>();
             builder.Services.AddScoped<UserMapper>();
             builder.Services.AddScoped<RequestMapper>();
+            builder.Services.AddScoped<StatsMapper>();
 
             builder.Services.AddControllers();
 

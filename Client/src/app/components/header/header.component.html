@@ -16,8 +16,27 @@
     <div *ngIf="authService.isAuthenticated()">
         <a [matMenuTriggerFor]="menu">{{ tokenService.getUsernameFromToken() }}</a>
         <mat-menu #menu="matMenu">
-            <button *ngIf="tokenService.getTeamIdFromToken()" class="menu-item" mat-menu-item [routerLink]="['team-profile', tokenService.getTeamIdFromToken()]">My team</button>
-            <button class="menu-item" mat-menu-item><app-logout></app-logout></button>
+            <button 
+                class="menu-item" 
+                mat-menu-item 
+                [routerLink]="['user-profile', tokenService.getUserIdFromToken()]"
+            >
+                Profile
+            </button>
+            <button 
+                *ngIf="tokenService.getTeamIdFromToken()" 
+                class="menu-item" 
+                mat-menu-item 
+                [routerLink]="['team-profile', tokenService.getTeamIdFromToken()]"
+            >
+                My team
+            </button>
+            <button 
+                class="menu-item" 
+                mat-menu-item
+            >
+                <app-logout></app-logout>
+            </button>
         </mat-menu>
     </div>
 

@@ -29,5 +29,12 @@ namespace Api.Controllers
             }
             return Ok(_statsMapper.MapStatsToDto(stats));
         }
+        [HttpPut("{id}/salary")]
+        public async Task<ActionResult> UpdateSalary(int id, int salary)
+        {
+            var stats = await _statsService.GetStatsByUserIdAsync(id);
+            await _statsService.UpdateUserSalaryAsync(stats, salary);
+            return Ok();
+        }
     }
 }

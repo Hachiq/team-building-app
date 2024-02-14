@@ -15,5 +15,11 @@ namespace Api.Services.StatsService
         {
             return await _db.Stats.FirstOrDefaultAsync(s => s.UserId == userId);
         }
+        public async Task UpdateUserSalaryAsync(Stats stats, int newSalary)
+        {
+            stats.Salary = newSalary;
+            _db.Stats.Update(stats);
+            await _db.SaveChangesAsync();
+        }
     }
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Stats } from 'src/app/models/stats';
 import { User } from 'src/app/models/user';
 import { StatsService } from 'src/app/services/stats.service';
+import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class UserProfileComponent {
   statAsDataSource: Stats[] = [];
   displayedColumns: string[] = [ 'daysWorked', 'daysPaid', 'salary'];
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private statsService: StatsService) {
+  constructor(private route: ActivatedRoute, private userService: UserService, private statsService: StatsService, private tokenService: TokenService) {
     route.params.subscribe(params => {
       this.userId = +params['id']; // Convert to number
     });
@@ -46,6 +47,10 @@ export class UserProfileComponent {
         this.statAsDataSource.push(this.stats);    
       }
     );
+  }
+
+  canChangeProfile(): boolean {
+    return this.tokenService.getUserIdFromToken() == this.user.id;
   }
 
   save() {

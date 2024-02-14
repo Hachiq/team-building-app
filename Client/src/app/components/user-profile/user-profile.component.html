@@ -23,7 +23,7 @@
                 <tr class="row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
         </div>
-        <div class="credentials-container" *ngIf="user">
+        <div class="credentials-container" *ngIf="user && canChangeProfile()">
             <form class="form-container">
                 <p style="color: bisque; font-size: 20px; height: 50px;">Profile</p>
                 <div class="form-control-container">

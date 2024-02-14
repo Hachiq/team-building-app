@@ -41,6 +41,7 @@ namespace Api.Controllers
             }
             return Ok(_userMapper.MapUserToDto(user));
         }
+        [Authorize]
         [HttpPut("{id}/update")]
         public async Task<ActionResult> Update(int id, UserCredentialsDto creds)
         {

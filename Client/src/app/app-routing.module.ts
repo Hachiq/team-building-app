@@ -9,6 +9,7 @@ import { TeamProfileComponent } from './components/team-profile/team-profile.com
 import { RequestsComponent } from './components/requests/requests.component';
 import { TeamGuard } from './guards/team.guard';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { StatsGuard } from './guards/stats.guard';
 
 const routes: Routes = [
   { path: '',   redirectTo: 'home', pathMatch: 'full' },
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: "users", component: UsersComponent },
   { path: "team-profile/:id", component: TeamProfileComponent },
   { path: "team-profile/:id/requests", component: RequestsComponent, canActivate:[TeamGuard] },
-  { path: "user-profile/:id", component: UserProfileComponent }
+  { path: "user-profile/:id", component: UserProfileComponent, canActivate:[StatsGuard] }
 ];
 
 @NgModule({

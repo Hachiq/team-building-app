@@ -48,7 +48,7 @@
             </ng-container>
           
             <tr class="header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr class="row" mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['../../user-profile', row.id]"></tr>
+            <tr class="row" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToUserProfile(row.id)"></tr>
         </table>
     </div>
 </div>

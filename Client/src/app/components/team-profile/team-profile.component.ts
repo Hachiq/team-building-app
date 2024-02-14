@@ -65,4 +65,10 @@ export class TeamProfileComponent {
       .getUsersByTeamId(id)
       .subscribe((result) => this.users = result);
   }
+
+  goToUserProfile(id: number) {
+    if (this.tokenService.getTeamIdFromToken() == this.team.id) {
+      this.router.navigate(["user-profile", id]);
+    }
+  }
 }

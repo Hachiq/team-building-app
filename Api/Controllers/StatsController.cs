@@ -1,6 +1,7 @@
 ﻿using Api.Mappers;
 using Api.Models;
 using Api.Services.StatsService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,7 @@ namespace Api.Controllers
             }
             return Ok(_statsMapper.MapStatsToDto(stats));
         }
+        [Authorize(Roles = "Leader")]
         [HttpPut("{id}/salary")]
         public async Task<ActionResult> UpdateSalary(int id, [FromBody] int salary)
         {

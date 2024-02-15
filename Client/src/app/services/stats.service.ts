@@ -16,4 +16,11 @@ export class StatsService {
       `${environment.apiUrl}/stats/${id}`
     )
   }
+
+  public update(id?: number, salary?: number | null) : Observable<any> {
+    return this.http.put<any>(
+      `${environment.apiUrl}/stats/${id}/salary`,
+      salary
+    )
+  }
 }

@@ -77,15 +77,24 @@
                     <mat-panel-title>
                         Set salary
                     </mat-panel-title>
-                    <mat-panel-description>
+                    <mat-panel-description *ngIf="user">
                         Set new salary for {{user.firstName}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
             
                 <mat-form-field>
                     <mat-label>New salary</mat-label>
-                    <input matInput type="number" min="0" step="100">
+                    <span matTextPrefix>&#8372; &nbsp;</span>
+                    <input matInput type="number" min="0" step="100" [formControl]="salary">
                 </mat-form-field>
+
+                <button 
+                    class="update-salary-button" 
+                    mat-raised-button color="primary"
+                    (click)="updateSalary()"
+                >
+                    Update
+                </button>
             
             </mat-expansion-panel>
         </div>

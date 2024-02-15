@@ -21,6 +21,8 @@ export class UserProfileComponent {
   statAsDataSource: Stats[] = [];
   displayedColumns: string[] = [ 'daysWorked', 'daysPaid', 'salary'];
 
+  salary = new FormControl();
+
   constructor(private route: ActivatedRoute, private userService: UserService, private statsService: StatsService, private tokenService: TokenService) {
     route.params.subscribe(params => {
       this.userId = +params['id']; // Convert to number
@@ -66,7 +68,17 @@ export class UserProfileComponent {
       if (error.status === 400) {
         console.log("Something wrong");
       }
-    })
+    });
+  }
+
+  updateSalary(){
+    this.statsService.update(this.stats.id, this.salary.value).subscribe(() => {    
+      this.loadStats();
+    }, (error) => {
+      if (error.status === 400) {
+        console.log("Something wrong");
+      }
+    });
   }
 
   getTotalReceiving(){

@@ -56,6 +56,10 @@ export class UserProfileComponent {
     return this.tokenService.getUserIdFromToken() == this.user.id;
   }
 
+  canChangeSalary() : boolean {
+    return this.tokenService.userIsLeader();
+  }
+
   save() {
     this.userService.update(
       this.user?.id,

@@ -54,6 +54,13 @@ export class TeamProfileComponent {
     return false;
   }
 
+  canAddDays(){
+    if(this.team){
+      return (this.tokenService.getTeamIdFromToken() == this.team.id) && this.tokenService.userIsLeader();
+    }
+    return false;
+  }
+
   canJoin() {
     return !this.tokenService.getTeamIdFromToken();
   }
@@ -76,6 +83,8 @@ export class TeamProfileComponent {
   }
 
   addDayWorked(){
+    if(!this.canAddDays) return;
+
     const selectedUsers = this.getSelectedUsers();
     selectedUsers.forEach(user => {
       this.statsService.addDayWorked(user.id).subscribe();
@@ -83,6 +92,8 @@ export class TeamProfileComponent {
   }
 
   addDayPaid(){
+    if(!this.canAddDays) return;
+    
     const selectedUsers = this.getSelectedUsers();
     selectedUsers.forEach(user => {
       this.statsService.addDayPaid(user.id).subscribe();

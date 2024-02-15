@@ -45,6 +45,7 @@ export class UserProfileComponent {
   loadStats() {
     this.statsService.getById(this.userId)
       .subscribe((result) => {
+        this.statAsDataSource = [],
         this.stats = result,
         this.statAsDataSource.push(this.stats);    
       }
@@ -72,7 +73,7 @@ export class UserProfileComponent {
   }
 
   updateSalary(){
-    this.statsService.update(this.stats.id, this.salary.value).subscribe(() => {    
+    this.statsService.update(this.stats.id, this.salary.value).subscribe(() => {   
       this.loadStats();
     }, (error) => {
       if (error.status === 400) {

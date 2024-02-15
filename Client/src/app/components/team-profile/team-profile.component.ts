@@ -20,7 +20,7 @@ export class TeamProfileComponent {
   users!: User[];
   selection = new SelectionModel<User>(true, []);
 
-  displayedColumns: string[] = [ 'select', 'id', 'username', 'firstName', 'lastName', 'email'];
+  displayedColumns: string[] = [ 'select', 'username', 'firstName', 'lastName', 'email'];
 
   constructor (private route: ActivatedRoute, private router: Router, private teamService: TeamService, private requestService: RequestService, private tokenService: TokenService, private statsService: StatsService) {
     route.params.subscribe(params => {
@@ -93,7 +93,7 @@ export class TeamProfileComponent {
 
   addDayPaid(){
     if(!this.canAddDays) return;
-    
+
     const selectedUsers = this.getSelectedUsers();
     selectedUsers.forEach(user => {
       this.statsService.addDayPaid(user.id).subscribe();

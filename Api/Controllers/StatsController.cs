@@ -38,5 +38,29 @@ namespace Api.Controllers
             await _statsService.UpdateUserSalaryAsync(stats, salary);
             return Ok();
         }
+        [Authorize(Roles = "Leader")]
+        [HttpPut("{id}/add-day-worked")]
+        public async Task<ActionResult> AddDayWorked(int id) 
+        {
+            var stats = await _statsService.GetStatsByUserIdAsync(id);
+            if (stats is null)
+            {
+                return NotFound();
+            }
+            await _statsService.AddDayWorkedAsync(stats);
+            return Ok();
+        }
+        [Authorize(Roles = "Leader")]
+        [HttpPut("{id}/add-day-paid")]
+        public async Task<ActionResult> AddDayPaid(int id)
+        {
+            var stats = await _statsService.GetStatsByUserIdAsync(id);
+            if (stats is null)
+            {
+                return NotFound();
+            }
+            await _statsService.AddDayPaidAsync(stats);
+            return Ok();
+        }
     }
 }

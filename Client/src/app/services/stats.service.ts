@@ -23,4 +23,18 @@ export class StatsService {
       salary
     )
   }
+
+  public addDayWorked(id: number): Observable<any> {
+    return this.http.put<any>(
+      `${environment.apiUrl}/stats/${id}/add-day-worked`,
+      null
+    )
+  }
+
+  public addDayPaid(id: number): Observable<any> {
+    return this.http.put<any>(
+      `${environment.apiUrl}/stats/${id}/add-day-paid`,
+      null
+    )
+  }
 }

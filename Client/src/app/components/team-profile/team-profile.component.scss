@@ -35,3 +35,22 @@
 table {
     width: 100%;
 }
+
+.add-days-container {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.add-day-worked-button{
+    width: 47%;
+}
+
+.add-day-paid-button {
+    width: 47%;
+}

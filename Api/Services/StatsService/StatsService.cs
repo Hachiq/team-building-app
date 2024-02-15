@@ -21,5 +21,17 @@ namespace Api.Services.StatsService
             _db.Stats.Update(stats);
             await _db.SaveChangesAsync();
         }
+        public async Task AddDayWorkedAsync(Stats stats)
+        {
+            stats.DaysWorked++;
+            _db.Update(stats);
+            await _db.SaveChangesAsync();
+        }
+        public async Task AddDayPaidAsync(Stats stats)
+        {
+            stats.DaysPaid++;
+            _db.Update(stats);
+            await _db.SaveChangesAsync();
+        }
     }
 }

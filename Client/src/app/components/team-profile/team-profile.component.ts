@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SelectionModel } from '@angular/cdk/collections';
 import { Team } from 'src/app/models/team';
 import { User } from 'src/app/models/user';
 import { RequestService } from 'src/app/services/request.service';
 import { TeamService } from 'src/app/services/team.service';
 import { TokenService } from 'src/app/services/token.service';
+import { StatsService } from 'src/app/services/stats.service';
 
 @Component({
   selector: 'app-team-profile',
@@ -16,10 +18,11 @@ export class TeamProfileComponent {
 
   team!: Team;
   users!: User[];
+  selection = new SelectionModel<User>(true, []);
 
-  displayedColumns: string[] = [ 'id', 'username', 'firstName', 'lastName', 'email'];
+  displayedColumns: string[] = [ 'select', 'id', 'username', 'firstName', 'lastName', 'email'];
 
-  constructor (private route: ActivatedRoute, private router: Router, private teamService: TeamService, private requestService: RequestService, private tokenService: TokenService) {
+  constructor (private route: ActivatedRoute, private router: Router, private teamService: TeamService, private requestService: RequestService, private tokenService: TokenService, private statsService: StatsService) {
     route.params.subscribe(params => {
       this.teamId = +params['id']; // Convert to number
     });
@@ -70,5 +73,47 @@ export class TeamProfileComponent {
     if (this.tokenService.getTeamIdFromToken() == this.team.id) {
       this.router.navigate(["user-profile", id]);
     }
+  }
+
+  addDayWorked(){
+    const selectedUsers = this.getSelectedUsers();
+    selectedUsers.forEach(user => {
+      this.statsService.addDayWorked(user.id).subscribe();
+    })
+  }
+
+  addDayPaid(){
+    const selectedUsers = this.getSelectedUsers();
+    selectedUsers.forEach(user => {
+      this.statsService.addDayPaid(user.id).subscribe();
+    })
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.users.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.users);
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: User): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
+
+  getSelectedUsers() {
+    return this.selection.selected;
   }
 }

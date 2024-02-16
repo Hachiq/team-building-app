@@ -33,5 +33,16 @@ namespace Api.Services.StatsService
             _db.Update(stats);
             await _db.SaveChangesAsync();
         }
+        public async Task ResetStatsOnDisbandAsync(Team team)
+        {
+            foreach (var user in team.Users)
+            {
+                user.Stats.Salary = 0;
+                user.Stats.DaysWorked = 0;
+                user.Stats.DaysPaid = 0;
+            }
+            _db.Teams.Update(team);
+            await _db.SaveChangesAsync();
+        }
     }
 }

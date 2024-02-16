@@ -25,7 +25,13 @@ namespace Api.Services.TeamService
 
         public async Task<Team> GetTeamByIdAsync(int id)
         {
-            return await _db.Teams.Include(t => t.Users).ThenInclude(u => u.UserRoles).ThenInclude(ur => ur.Role).FirstOrDefaultAsync(t => t.Id == id);
+            return await _db.Teams.Include(t => t.Requests).Include(t => t.Users).ThenInclude(u => u.Stats).Include(t => t.Users).ThenInclude(u => u.UserRoles).ThenInclude(ur => ur.Role).FirstOrDefaultAsync(t => t.Id == id);
+        }
+
+        public async Task<User> GetTeamLeaderAsync(Team team)
+        {
+            var users = team.Users.ToList();
+            return users.FirstOrDefault(u => u.UserRoles.Any(ur => ur.RoleId == 2));
         }
 
         public async Task CreateTeamAsync(Team team, User user)
@@ -39,6 +45,12 @@ namespace Api.Services.TeamService
         {
             team.Users.Add(user);
             _db.Update(team);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task DisbandTeamAsync(Team team)
+        {
+            _db.Teams.Remove(team);
             await _db.SaveChangesAsync();
         }
     }

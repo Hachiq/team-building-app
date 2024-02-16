@@ -10,6 +10,7 @@ namespace Api.Services.RequestService
         Task CreateRequestAsync(int userId, int teamId);
         Task DeclineRequestAsync(Request request);
         Task AcceptRequestAsync(Request request);
+        Task DeclineRequestsOnDisbandAsync(Team team);
         bool AlreadyProcessed(Request request);
         Task<bool> RequestIsSpam(CreateJoinRequestDto request);
     }

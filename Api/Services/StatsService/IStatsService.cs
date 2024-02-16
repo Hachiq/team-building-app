@@ -8,5 +8,6 @@ namespace Api.Services.StatsService
         Task UpdateUserSalaryAsync(Stats stats, int newSalary);
         Task AddDayWorkedAsync(Stats stats);
         Task AddDayPaidAsync(Stats stats);
+        Task ResetStatsOnDisbandAsync(Team team);
     }
 }

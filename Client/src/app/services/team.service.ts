@@ -37,4 +37,11 @@ export class TeamService {
       request
     );
   }
+
+  public disband(id: number): Observable<any> {
+    return this.http.post<any>(
+      `${environment.apiUrl}/team/${id}/disband`,
+      null
+    )
+  }
 }

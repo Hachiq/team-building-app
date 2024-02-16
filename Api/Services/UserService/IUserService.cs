@@ -16,6 +16,7 @@ namespace Api.Services.UserService
         Task<IEnumerable<string>> GetUserRolesAsync(int userId);
         Task AssignUserToUserRoleAsync(User user);
         Task AssignUserToLeaderRoleAsync(User user);
+        Task RemoveUserFromLeaderRoleAsync(User user);
         Task UpdateUserCredentials(User user, UserCredentialsDto creds);
     }
 }

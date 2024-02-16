@@ -98,6 +98,15 @@ namespace Api.Services.UserService
             });
             await _db.SaveChangesAsync();
         }
+        public async Task RemoveUserFromLeaderRoleAsync(User user)
+        {
+            var leaderRole = user.UserRoles.FirstOrDefault(ur => ur.RoleId == 2);
+            if (leaderRole is not null)
+            {
+                _db.UserRoles.Remove(leaderRole);
+            }
+            await _db.SaveChangesAsync();
+        }
         public async Task UpdateUserCredentials(User user, UserCredentialsDto creds)
         {
             user.FirstName = creds.FirstName; 

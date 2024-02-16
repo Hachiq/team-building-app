@@ -1,14 +1,5 @@
 <div class="container">
     <p class="title" *ngIf="team">{{ team.name }}</p>
-    <div class="requests-button-section" *ngIf="canViewRequests()">
-      <button
-        class="requests-button"
-        mat-raised-button color="accent"
-        [routerLink]="['requests']"
-      >
-        Requests for joining
-      </button>
-    </div>
     <div class="join-button-section" *ngIf="canJoin()">
       <button 
         class="join-button" 
@@ -20,6 +11,27 @@
       <p class="text-helper">Your request can be accepted by the leader of the team.</p>
     </div>
     <div class="users-table" *ngIf="team">
+      <div class="main-button-section" *ngIf="canViewRequests() || canDisband()">
+        <div class="requests-button-section" *ngIf="canViewRequests()">
+          <button
+            class="requests-button"
+            mat-raised-button color="accent"
+            [routerLink]="['requests']"
+          >
+            Requests for joining
+          </button>
+        </div>
+        <div class="spacer"></div>
+        <div class="disband-button-section" *ngIf="canDisband()">
+          <button
+            class="disband-button"
+            mat-raised-button color="warn"
+            (click)="disband()"
+          >
+            Disband
+          </button>
+        </div>
+      </div>
         <table mat-table [dataSource]="users" class="mat-elevation-z8">
           
           <ng-container matColumnDef="select">

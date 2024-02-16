@@ -64,6 +64,16 @@ namespace Api.Services.RequestService
             await _db.SaveChangesAsync();
         }
 
+        public async Task DeclineRequestsOnDisbandAsync(Team team)
+        {
+            foreach (var request in team.Requests)
+            {
+                request.Decline();
+            }
+            _db.Teams.Update(team);
+            await _db.SaveChangesAsync();
+        }
+
         public bool AlreadyProcessed(Request request)
         {
             return request.IsAccepted() || request.IsDeclined();

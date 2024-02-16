@@ -2,6 +2,7 @@
 using Api.Mappers;
 using Api.Models;
 using Api.Services.RequestService;
+using Api.Services.StatsService;
 using Api.Services.TeamService;
 using Api.Services.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,15 +20,17 @@ namespace Api.Controllers
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
         private readonly IRequestService _requestService;
+        private readonly IStatsService _statsService;
         private readonly TeamMapper _teamMapper;
         private readonly UserMapper _userMapper;
         private readonly RequestMapper _requestMapper;
 
-        public TeamController(ITeamService teamService, IUserService userService, TeamMapper mapper, UserMapper userMapper, IRequestService requestService, RequestMapper requestMapper)
+        public TeamController(ITeamService teamService, IUserService userService, IRequestService requestService, IStatsService statsService, TeamMapper mapper, UserMapper userMapper, RequestMapper requestMapper)
         {
             _teamService = teamService;
             _userService = userService;
             _requestService = requestService;
+            _statsService = statsService;
             _teamMapper = mapper;
             _userMapper = userMapper;
             _requestMapper = requestMapper;
@@ -99,6 +102,27 @@ namespace Api.Controllers
             await _teamService.CreateTeamAsync(team, user);
             await _userService.AssignUserToLeaderRoleAsync(user);
 
+            return Ok();
+        }
+
+        [Authorize(Roles = "Leader")]
+        [HttpPost("{id}/disband")]
+        public async Task<ActionResult> Disband(int id)
+        {
+            var team = await _teamService.GetTeamByIdAsync(id);
+            if (team is null)
+            {
+                return NotFound();
+            }
+            var leader = await _teamService.GetTeamLeaderAsync(team);
+            if (leader is null)
+            {
+                return NotFound();
+            }
+            await _requestService.DeclineRequestsOnDisbandAsync(team);
+            await _statsService.ResetStatsOnDisbandAsync(team);
+            await _teamService.DisbandTeamAsync(team);
+            await _userService.RemoveUserFromLeaderRoleAsync(leader);
             return Ok();
         }
 

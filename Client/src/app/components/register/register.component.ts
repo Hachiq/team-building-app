@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent {
   
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
   
   hide = true;
 
@@ -22,7 +23,9 @@ export class RegisterComponent {
       username: this.username.value,
       email: this.email.value,
       password: this.password.value
-    }).subscribe(() => {},
+    }).subscribe(() => {
+      this.router.navigate(['login']);
+    },
       (error) => {
         if (error.status === 409){
           this.username.setErrors({ conflict: true });

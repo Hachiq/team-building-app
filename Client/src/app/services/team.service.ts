@@ -44,4 +44,11 @@ export class TeamService {
       null
     )
   }
+
+  public leave(id: number, userId: number): Observable<any> {
+    return this.http.post<any>(
+      `${environment.apiUrl}/team/${id}/leave`,
+      userId
+    )
+  }
 }

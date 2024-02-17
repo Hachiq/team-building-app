@@ -44,5 +44,15 @@ namespace Api.Services.StatsService
             _db.Teams.Update(team);
             await _db.SaveChangesAsync();
         }
+
+        public async Task ResetStatsOnLeaveAsync(Stats stats)
+        {
+            stats.Salary = 0;
+            stats.DaysWorked = 0;
+            stats.DaysPaid = 0;
+
+            _db.Stats.Update(stats);
+            await _db.SaveChangesAsync();
+        }
     }
 }

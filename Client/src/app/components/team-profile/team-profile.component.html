@@ -31,6 +31,15 @@
             Disband
           </button>
         </div>
+        <div class="requests-button-section" *ngIf="canLeave()">
+          <button
+            class="leave-button"
+            mat-raised-button color="warn"
+            (click)="leave()"
+          >
+            Leave
+          </button>
+        </div>
       </div>
         <table mat-table [dataSource]="users" class="mat-elevation-z8">
           

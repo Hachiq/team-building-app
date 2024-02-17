@@ -11,5 +11,6 @@ namespace Api.Services.TeamService
         Task CreateTeamAsync(Team team, User user);
         Task AddTeamMemberAsync(Team team, User user);
         Task DisbandTeamAsync(Team team);
+        Task RemoveUserFromTeamAsync(Team team, User user);
     }
 }

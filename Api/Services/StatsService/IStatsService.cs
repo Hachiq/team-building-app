@@ -9,5 +9,6 @@ namespace Api.Services.StatsService
         Task AddDayWorkedAsync(Stats stats);
         Task AddDayPaidAsync(Stats stats);
         Task ResetStatsOnDisbandAsync(Team team);
+        Task ResetStatsOnLeaveAsync(Stats stats);
     }
 }

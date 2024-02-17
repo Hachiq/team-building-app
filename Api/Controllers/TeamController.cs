@@ -126,6 +126,24 @@ namespace Api.Controllers
             return Ok();
         }
 
+        [HttpPost("{id}/leave")]
+        public async Task<ActionResult> Leave(int id, [FromBody] int userId)
+        {
+            var team = await _teamService.GetTeamByIdAsync(id);
+            if (team is null)
+            {
+                return NotFound();
+            }
+            var user = await _userService.GetUserByIdAsync(userId);
+            if (user is null || user.Stats is null)
+            {
+                return NotFound();
+            }
+            await _teamService.RemoveUserFromTeamAsync(team, user);
+            await _statsService.ResetStatsOnLeaveAsync(user.Stats);
+            return Ok();
+        }
+
         private async Task<bool> IsTaken(string name)
         {
             var team = await _teamService.GetTeamByNameAsync(name);

@@ -53,5 +53,12 @@ namespace Api.Services.TeamService
             _db.Teams.Remove(team);
             await _db.SaveChangesAsync();
         }
+
+        public async Task RemoveUserFromTeamAsync(Team team, User user)
+        {
+            team.Users.Remove(user);
+            _db.Teams.Update(team);
+            await _db.SaveChangesAsync();
+        }
     }
 }

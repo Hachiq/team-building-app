@@ -61,6 +61,13 @@ export class TeamProfileComponent {
     return false;
   }
 
+  canLeave(){
+    if(this.team){
+      return (this.tokenService.getTeamIdFromToken() == this.team.id) && !this.tokenService.userIsLeader();
+    }
+    return false;
+  }
+
   canAddDays(){
     if(this.team){
       return (this.tokenService.getTeamIdFromToken() == this.team.id) && this.tokenService.userIsLeader();
@@ -87,6 +94,12 @@ export class TeamProfileComponent {
     this.teamService.disband(this.team.id).subscribe(() => {
       this.router.navigate(['teams'])
     });
+  }
+
+  leave(){
+    this.teamService.leave(this.team.id, this.tokenService.getUserIdFromToken()).subscribe(() => {
+      this.router.navigate(['teams'])
+    })
   }
 
   goToUserProfile(id: number) {

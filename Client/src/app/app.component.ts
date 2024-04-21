@@ -17,13 +17,4 @@ export class AppComponent {
       console.error("Error refreshing token", error) 
     });
   }
-
-  // ngOnInit() {
-  //   this.authService.refreshToken().subscribe(() => { 
-  //     console.log("Token refreshed successfully.") 
-  //   }, 
-  //   (error) => { 
-  //     console.error("Error refreshing token", error) 
-  //   });
-  // }
 }

@@ -1,39 +1,32 @@
-import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { User } from 'src/app/models/user';
-import { AuthService } from 'src/app/services/auth.service';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
+
 export class UsersComponent {
-  users!: User[];
   displayedColumns: string[] = [ 'id', 'username', 'firstName', 'lastName', 'email'];
+  dataSource!: MatTableDataSource<User>;
 
-  tokenSubscription: Subscription | undefined;
-  
-  constructor (private userService: UserService, private authService: AuthService) { }
-
-  ngOnInit(): void {
-    this.tokenSubscription = this.authService.JsonWebToken$.subscribe(token => {
-      if (token) {
-        this.loadUsers();
-      }
-    });
+  constructor(private userService: UserService){
+    this.loadUsers();
   }
 
-  ngOnDestroy(): void {
-    if (this.tokenSubscription) {
-      this.tokenSubscription.unsubscribe();
-    }
-  }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   loadUsers() {
     this.userService
       .get()
-      .subscribe((result: User[]) => this.users = result);
+      .subscribe((result: User[]) => { 
+        this.dataSource = new MatTableDataSource<User>(result);
+        this.dataSource.paginator = this.paginator;
+      } 
+    );
   }
 }

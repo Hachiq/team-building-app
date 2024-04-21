@@ -10,6 +10,7 @@ import { RequestsComponent } from './components/requests/requests.component';
 import { TeamGuard } from './guards/team.guard';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { StatsGuard } from './guards/stats.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '',   redirectTo: 'home', pathMatch: 'full' },
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "teams", component: TeamsComponent },
-  { path: "users", component: UsersComponent },
+  { path: "users", component: UsersComponent, canActivate:[AuthGuard] },
   { path: "team-profile/:id", component: TeamProfileComponent },
   { path: "team-profile/:id/requests", component: RequestsComponent, canActivate:[TeamGuard] },
   { path: "user-profile/:id", component: UserProfileComponent, canActivate:[StatsGuard] }

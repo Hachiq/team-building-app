@@ -1,7 +1,7 @@
 <div class="container">
     <p class="title" *ngIf="team">Requests for {{team.name}}</p>
     <div class="requests-table">
-        <table mat-table [dataSource]="requests" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
             <ng-container matColumnDef="username">
               <th mat-header-cell *matHeaderCellDef> Username </th>
@@ -32,5 +32,9 @@
             <tr class="header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr class="row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <mat-paginator [pageSizeOptions]="[3, 5, 10]"
+                    showFirstLastButtons
+                    aria-label="Select page of requests">
+        </mat-paginator>
     </div>
 </div>

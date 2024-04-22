@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Request } from 'src/app/models/request';
 import { Team } from 'src/app/models/team';
@@ -14,9 +16,11 @@ export class RequestsComponent {
   teamId!: number;
 
   team!: Team;
-  requests!: Request[];
+  dataSource!: MatTableDataSource<Request>;
 
   displayedColumns: string[] = [ 'username', 'date', 'status', 'action'];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private route: ActivatedRoute, private teamService: TeamService, private requestService: RequestService) {
     route.params.subscribe(params => {
@@ -35,10 +39,10 @@ export class RequestsComponent {
       .subscribe(() => {
         this.loadRequests(this.teamId);
       },
-        (error) => {
-          console.log(error.error);  
-        }
-      );
+      (error) => {
+        console.log(error.error);  
+      }
+    );
   }
 
   decline(id: number){
@@ -47,10 +51,10 @@ export class RequestsComponent {
       .subscribe(() => {
         this.loadRequests(this.teamId);
       },
-        (error) => {
-          console.log(error.error);
-        }
-      );
+      (error) => {
+        console.log(error.error);
+      }
+    );
   }
 
   loadTeam(id: number){
@@ -62,6 +66,10 @@ export class RequestsComponent {
   loadRequests(id: number){
     this.requestService
       .get(id)
-      .subscribe((result) => this.requests = result);
+      .subscribe((result) => {
+        this.dataSource = new MatTableDataSource<Request>(result);
+        this.dataSource.paginator = this.paginator;
+      }
+    );
   }
 }

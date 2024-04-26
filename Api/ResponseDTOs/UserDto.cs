@@ -1,4 +1,4 @@
-﻿namespace Api.DTOs
+﻿namespace Api.ResponseDTOs
 {
     public class UserDto
     {

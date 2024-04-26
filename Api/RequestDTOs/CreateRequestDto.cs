@@ -1,6 +1,6 @@
-﻿namespace Api.DTOs
+﻿namespace Api.RequestDTOs
 {
-    public class CreateJoinRequestDto
+    public class CreateRequestDto
     {
         public int UserId { get; set; }
         public int TeamId { get; set; }

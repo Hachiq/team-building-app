@@ -1,6 +1,6 @@
 ﻿using Api.Data;
-using Api.DTOs;
 using Api.Models;
+using Api.RequestDTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Services.UserService

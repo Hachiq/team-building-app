@@ -1,6 +1,6 @@
 ﻿using Api.Data;
-using Api.DTOs;
 using Api.Models;
+using Api.RequestDTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Services.RequestService
@@ -36,7 +36,7 @@ namespace Api.Services.RequestService
             await _db.SaveChangesAsync();
         }
 
-        public async Task<bool> RequestIsSpam(CreateJoinRequestDto request)
+        public async Task<bool> RequestIsSpam(CreateRequestDto request)
         {
             var requestFromDb = await _db.Requests
                 .FirstOrDefaultAsync(r =>

@@ -1,5 +1,5 @@
-﻿using Api.DTOs;
-using Api.Models;
+﻿using Api.Models;
+using Api.RequestDTOs;
 using Api.Services.UserService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

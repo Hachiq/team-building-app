@@ -1,6 +1,7 @@
-﻿using Api.DTOs;
-using Api.Mappers;
+﻿using Api.Mappers;
 using Api.Models;
+using Api.RequestDTOs;
+using Api.ResponseDTOs;
 using Api.Services.RequestService;
 using Api.Services.StatsService;
 using Api.Services.TeamService;

@@ -1,5 +1,5 @@
-﻿using Api.DTOs;
-using Api.Models;
+﻿using Api.Models;
+using Api.ResponseDTOs;
 
 namespace Api.Mappers
 {

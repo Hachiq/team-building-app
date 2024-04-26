@@ -1,6 +1,6 @@
-﻿using Api.DTOs;
-using Api.Mappers;
+﻿using Api.Mappers;
 using Api.Models;
+using Api.RequestDTOs;
 using Api.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

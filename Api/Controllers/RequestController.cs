@@ -1,6 +1,6 @@
-﻿using Api.DTOs;
-using Api.Mappers;
+﻿using Api.Mappers;
 using Api.Models;
+using Api.RequestDTOs;
 using Api.Services.RequestService;
 using Api.Services.TeamService;
 using Api.Services.UserService;
@@ -29,7 +29,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult> Create(CreateJoinRequestDto joinRequest)
+        public async Task<ActionResult> Create(CreateRequestDto joinRequest)
         {
             if (joinRequest.UserId == 0 || joinRequest.TeamId == 0)
             {

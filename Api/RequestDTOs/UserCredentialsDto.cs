@@ -1,4 +1,4 @@
-﻿namespace Api.DTOs
+﻿namespace Api.RequestDTOs
 {
     public class UserCredentialsDto
     {

@@ -1,18 +1,18 @@
 <mat-toolbar>
 
-    <a routerLink="/">Home</a>
-    <span class="secondary-spacer"></span>
     <a routerLink="/teams">Teams</a>
     <span class="secondary-spacer"></span>
     <a routerLink="/users" *ngIf="authService.isAuthenticated()">Users</a>
 
     <!-- Log in and Register links on the right -->
     <span class="main-spacer"></span>
+
     <div *ngIf="!authService.isAuthenticated()">
         <a routerLink="/login">Log in</a>
         <span class="secondary-spacer"></span>
         <a routerLink="/register">Register</a>
     </div>
+    
     <div *ngIf="authService.isAuthenticated()">
         <a [matMenuTriggerFor]="menu">{{ tokenService.getUsernameFromToken() }}</a>
         <mat-menu #menu="matMenu">

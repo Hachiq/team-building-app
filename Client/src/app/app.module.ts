@@ -18,7 +18,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -34,7 +33,6 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
     LogoutComponent,

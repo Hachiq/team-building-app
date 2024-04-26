@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { UsersComponent } from './components/users/users.component';
 import { TeamProfileComponent } from './components/team-profile/team-profile.component';
@@ -13,8 +12,7 @@ import { StatsGuard } from './guards/stats.guard';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '',   redirectTo: 'home', pathMatch: 'full' },
-  { path: "home", component: HomeComponent },
+  { path: '',   redirectTo: 'teams', pathMatch: 'full' },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "teams", component: TeamsComponent },

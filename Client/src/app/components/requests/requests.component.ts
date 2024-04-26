@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -22,7 +23,7 @@ export class RequestsComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private route: ActivatedRoute, private teamService: TeamService, private requestService: RequestService) {
+  constructor(private route: ActivatedRoute, private teamService: TeamService, private requestService: RequestService, public datePipe: DatePipe) {
     route.params.subscribe(params => {
       this.teamId = +params['id']; // Convert to number
     });

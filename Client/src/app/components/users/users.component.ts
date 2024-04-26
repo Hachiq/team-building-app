@@ -11,7 +11,7 @@ import { User } from 'src/app/models/user';
 })
 
 export class UsersComponent {
-  displayedColumns: string[] = [ 'id', 'username', 'firstName', 'lastName', 'email'];
+  displayedColumns: string[] = [ 'id', 'username', 'firstName', 'lastName', 'email', 'isEmployed'];
   dataSource!: MatTableDataSource<User>;
 
   constructor(private userService: UserService){

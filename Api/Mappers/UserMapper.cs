@@ -18,7 +18,8 @@ namespace Api.Mappers
                 Username = user.Username,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email
+                Email = user.Email,
+                IsEmployed = user.Team != null
             };
         }
         public List<UserDto> MapUserListToDtoList(List<User> users)

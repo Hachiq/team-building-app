@@ -23,7 +23,7 @@ export class LoginComponent {
       password: this.password.value
     }).subscribe((token: string) => {
       this.authService.setToken(token);
-      this.router.navigate(['home']);
+      this.router.navigate(['teams']);
     },
       (error) => {
         if(error.status === 400){

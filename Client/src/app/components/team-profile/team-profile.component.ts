@@ -103,7 +103,8 @@ export class TeamProfileComponent {
   }
 
   goToUserProfile(id: number) {
-    if (this.tokenService.getTeamIdFromToken() == this.team.id) {
+    if (this.tokenService.getTeamIdFromToken() == this.team.id && 
+          (this.tokenService.userIsLeader() || this.tokenService.getUserIdFromToken() == id)) {
       this.router.navigate(["user-profile", id]);
     }
   }

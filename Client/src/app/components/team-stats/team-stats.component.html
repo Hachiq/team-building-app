@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Team statistics</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="info-row">
+        <span class="info-label">Average salary:</span>
+        <span class="info-value">{{ teamStats.averageSalary }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Highest salary:</span>
+        <span class="info-value">{{ teamStats.highestSalary }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Lowest salary:</span>
+        <span class="info-value">{{ teamStats.lowestSalary }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Total days worked:</span>
+        <span class="info-value">{{ teamStats.totalDaysWorked }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Total days paid:</span>
+        <span class="info-value">{{ teamStats.totalDaysPaid }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Earned:</span>
+        <span class="info-value">{{ teamStats.totalEarned }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Debt:</span>
+        <span class="info-value">{{ teamStats.totalDebt }}</span>
+      </div>
+    </mat-card-content>
+</mat-card>

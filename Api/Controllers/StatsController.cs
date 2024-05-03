@@ -20,7 +20,7 @@ namespace Api.Controllers
             _statsMapper = statsMapper;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("user")]
         public async Task<ActionResult<Stats>> Get(int id)
         {
             var stats = await _statsService.GetStatsByUserIdAsync(id);
@@ -29,6 +29,16 @@ namespace Api.Controllers
                 return NotFound();
             }
             return Ok(_statsMapper.MapStatsToDto(stats));
+        }
+        [HttpGet("team")]
+        public async Task<ActionResult<Stats>> GetTeamStats(int id)
+        {
+            var stats = await _statsService.GetStatsByTeamIdAsync(id);
+            if (stats.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(_statsMapper.MapStatsToTeamStatsDto(stats));
         }
         [Authorize(Roles = "Leader")]
         [HttpPut("{id}/salary")]

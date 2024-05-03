@@ -16,7 +16,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -29,6 +30,7 @@ import { UsersComponent } from './components/users/users.component';
 import { TeamProfileComponent } from './components/team-profile/team-profile.component';
 import { RequestsComponent } from './components/requests/requests.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { TeamStatsComponent } from './components/team-stats/team-stats.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     UsersComponent,
     TeamProfileComponent,
     RequestsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TeamStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     MatPaginatorModule,
     MatMenuModule,
     MatExpansionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatCardModule
   ],
   providers: [
     {

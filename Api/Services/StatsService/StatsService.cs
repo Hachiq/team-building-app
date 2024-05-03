@@ -15,6 +15,14 @@ namespace Api.Services.StatsService
         {
             return await _db.Stats.FirstOrDefaultAsync(s => s.UserId == userId);
         }
+        public async Task<List<Stats>> GetStatsByTeamIdAsync(int teamId)
+        {
+            return await _db.Stats
+                .Include(s => s.User)
+                .ThenInclude(u => u.Team)
+                .Where(s => s.User.Team.Id == teamId)
+                .ToListAsync();
+        }
         public async Task UpdateUserSalaryAsync(Stats stats, int newSalary)
         {
             stats.Salary = newSalary;

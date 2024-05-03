@@ -43,7 +43,7 @@ export class UserProfileComponent {
   }
 
   loadStats() {
-    this.statsService.getById(this.userId)
+    this.statsService.getByUserId(this.userId)
       .subscribe((result) => {
         this.statAsDataSource = [],
         this.stats = result,

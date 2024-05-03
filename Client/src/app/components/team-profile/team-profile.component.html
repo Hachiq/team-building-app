@@ -6,9 +6,9 @@
     </button>
     <p class="text-helper">Your request can be accepted by the leader of the team.</p>
   </div>
-  
-  <div class="main-button-section" *ngIf="canViewRequests() || canDisband()">
-    <div class="requests-button-section" *ngIf="canViewRequests()">
+
+  <div class="main-button-section" *ngIf="isTeamMember() || canDisband()">
+    <div class="requests-button-section" *ngIf="isTeamMember()">
       <button class="requests-button" mat-raised-button color="accent" [routerLink]="['requests']">
         Requests for joining
       </button>
@@ -90,7 +90,7 @@
 
     <div class="spacer"></div>
 
-    <div class="stats-content">
+    <div class="stats-content" *ngIf="isTeamMember()">
       <div class="stats-card">
         <app-team-stats></app-team-stats>
       </div>

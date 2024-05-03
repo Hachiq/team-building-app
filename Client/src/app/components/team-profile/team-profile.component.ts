@@ -47,7 +47,7 @@ export class TeamProfileComponent {
     )
   }
 
-  canViewRequests(){
+  isTeamMember(){
     if(this.team){
       return this.tokenService.getTeamIdFromToken() == this.team.id;
     }

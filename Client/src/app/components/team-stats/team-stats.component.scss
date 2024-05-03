@@ -1,0 +1,20 @@
+mat-card-title {
+    color: bisque;
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.info-label {
+    font-weight: bold;
+}
+
+.info-value {
+    flex: 1;
+    margin-left: 10px;
+}

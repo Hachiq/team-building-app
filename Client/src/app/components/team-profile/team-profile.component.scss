@@ -18,9 +18,24 @@
     padding-top: 10px;
 }
 
-.users-table {
-    width: 45%;
+.main-button-section {
+    display: flex;
+    padding-bottom: 30px;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.content {
+    width: 100%;
     padding-top: 50px;
+    display: flex;
+    flex-direction: row; /* Arrange table and stats horizontally */
+}
+
+.table-content {
+    min-width: 55%;
 }
 
 .header-row {
@@ -32,19 +47,11 @@
     background-color: #494545;
 }
 
-table {
-    width: 100%;
-}
-
 .add-days-container {
     padding-top: 50px;
     display: flex;
     align-items: center;
     width: 100%;
-}
-
-.spacer {
-    flex-grow: 1;
 }
 
 .add-day-worked-button{
@@ -55,7 +62,10 @@ table {
     width: 47%;
 }
 
-.main-button-section {
-    display: flex;
-    padding-bottom: 50px;
+.stats-content {
+    min-width: 35%;
+}
+
+.stats-card {
+    margin-left: 40px;
 }

@@ -51,40 +51,40 @@
           </td>
         </ng-container>
   
-          <ng-container matColumnDef="username">
-            <th mat-header-cell *matHeaderCellDef> Username </th>
-            <td mat-cell *matCellDef="let user"> {{user.username}} </td>
-          </ng-container>
-        
-          <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef> First name </th>
-            <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="lastName">
-              <th mat-header-cell *matHeaderCellDef> Last name </th>
-              <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="email">
-              <th mat-header-cell *matHeaderCellDef> Email </th>
-              <td mat-cell *matCellDef="let user"> {{user.email}} </td>
-          </ng-container>
-        
-          <tr class="header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr class="row" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToUserProfile(row.id)"></tr>
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef> Username </th>
+          <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef> First name </th>
+          <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
+        </ng-container>
 
-        </table>
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Last name </th>
+            <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
+        </ng-container>
 
-        <div class="add-days-container" *ngIf="!selection.isEmpty()">
-          <button class="add-day-worked-button" mat-raised-button color="primary" (click)="addDayWorked()">
-            Add day worked for selected users
-          </button>
-          <div class="spacer"></div>
-          <button class="add-day-paid-button" mat-raised-button color="primary" (click)="addDayPaid()">
-            Add day paid for selected users
-          </button>
-        </div>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+        </ng-container>
+      
+        <tr class="header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr class="row" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToUserProfile(row.id)"></tr>
+
+      </table>
+
+      <div class="add-days-container" *ngIf="!selection.isEmpty()">
+        <button class="add-day-worked-button" mat-raised-button color="primary" (click)="addDayWorked()">
+          Add day worked for selected users
+        </button>
+        <div class="spacer"></div>
+        <button class="add-day-paid-button" mat-raised-button color="primary" (click)="addDayPaid()">
+          Add day paid for selected users
+        </button>
+      </div>
 
     </div>
 

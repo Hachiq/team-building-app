@@ -41,8 +41,10 @@
                 <tr mat-footer-row *matFooterRowDef="['earned']"></tr>
             </table>
         </div>
-        <div class="credentials-container" *ngIf="user && canChangeProfile()">
-            <form class="form-container">
+
+        <div class="credentials-container">
+
+            <form class="form-container" *ngIf="user && canChangeProfile()">
                 <p style="color: bisque; font-size: 20px; height: 50px;">Profile</p>
                 <div class="form-control-container">
                     <mat-form-field appearance="outline">
@@ -70,7 +72,29 @@
                     Save
                 </button>
             </form>
+
+            <mat-card *ngIf="user && !canChangeProfile()">
+                <mat-card-header>
+                  <mat-card-title>User credentials</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="info-row">
+                    <span class="info-label">First name:</span>
+                    <span class="info-value">{{ user.firstName }}</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Last name:</span>
+                    <span class="info-value">{{ user.lastName }}</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">{{ user.email }}</span>
+                  </div>
+                </mat-card-content>
+            </mat-card>
+
         </div>
+
         <div class="salary-container" *ngIf="canChangeSalary()">
             <mat-expansion-panel>
                 <mat-expansion-panel-header>

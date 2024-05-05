@@ -18,19 +18,19 @@
               
                 <ng-container matColumnDef="salary">
                   <th mat-header-cell *matHeaderCellDef> Salary </th>
-                  <td mat-cell *matCellDef="let stat"> {{stat.salary}} &#8372; </td>
-                  <td mat-footer-cell *matFooterCellDef> {{getTotalReceiving()}} &#8372; </td>
+                  <td mat-cell *matCellDef="let stat"> {{stat.salary.toLocaleString('en-US')}} &#8372; </td>
+                  <td mat-footer-cell *matFooterCellDef> {{getTotalReceiving().toLocaleString('en-US')}} &#8372; </td>
                 </ng-container>
 
                 <ng-container matColumnDef="debt">
                     <td class="debt-footer" mat-footer-cell *matFooterCellDef colspan="3">
-                        Company debt (left to receive): {{getCompanyDebt()}} &#8372;
+                        Company debt (left to receive): {{getCompanyDebt().toLocaleString('en-US')}} &#8372;
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="earned">
                     <td mat-footer-cell *matFooterCellDef colspan="3">
-                        Total earned for {{stats.daysWorked}} days of work: {{getTotalReceiving() + getCompanyDebt()}} &#8372;
+                        Total earned for {{stats.daysWorked}} days of work: {{(getTotalReceiving() + getCompanyDebt()).toLocaleString('en-US')}} &#8372;
                     </td>
                 </ng-container>
               

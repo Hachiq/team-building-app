@@ -5,15 +5,15 @@
     <mat-card-content>
       <div class="info-row">
         <span class="info-label">Average salary:</span>
-        <span class="info-value">{{ teamStats.averageSalary }} &#8372;</span>
+        <span class="info-value">{{ teamStats.averageSalary.toLocaleString('en-US', { maximumFractionDigits: 2 }) }} &#8372;</span>
       </div>
       <div class="info-row">
         <span class="info-label">Highest salary:</span>
-        <span class="info-value">{{ teamStats.highestSalary }} &#8372;</span>
+        <span class="info-value">{{ teamStats.highestSalary.toLocaleString('en-US') }} &#8372;</span>
       </div>
       <div class="info-row">
         <span class="info-label">Lowest salary:</span>
-        <span class="info-value">{{ teamStats.lowestSalary }} &#8372;</span>
+        <span class="info-value">{{ teamStats.lowestSalary.toLocaleString('en-US') }} &#8372;</span>
       </div>
       <div class="info-row">
         <span class="info-label">Total days worked:</span>
@@ -25,11 +25,11 @@
       </div>
       <div class="info-row">
         <span class="info-label">Earned:</span>
-        <span class="info-value">{{ teamStats.totalEarned }} &#8372;</span>
+        <span class="info-value">{{ teamStats.totalEarned.toLocaleString('en-US') }} &#8372;</span>
       </div>
       <div class="info-row">
         <span class="info-label">Debt:</span>
-        <span class="info-value">{{ teamStats.totalDebt }} &#8372;</span>
+        <span class="info-value">{{ teamStats.totalDebt.toLocaleString('en-US') }} &#8372;</span>
       </div>
     </mat-card-content>
 </mat-card>

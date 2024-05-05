@@ -21,7 +21,7 @@ namespace Api.Services.UserService
 
         public async Task<List<User>> GetUsersByTeamIdAsync(int id)
         {
-            return await _db.Users.Where(u => u.Team.Id == id).ToListAsync();
+            return await _db.Users.Include(u => u.Stats).Include(u => u.UserRoles).Where(u => u.Team.Id == id).ToListAsync();
         }
 
         public async Task<User> GetUserByIdAsync(int id)

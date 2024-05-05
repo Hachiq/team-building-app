@@ -64,7 +64,7 @@ namespace Api.Controllers
             {
                 return NoContent();
             }
-            return Ok(_userMapper.MapUserListToDtoList(users));
+            return Ok(_userMapper.MapUserListToTeamMemberDtoList(users));
         }
         [HttpGet("{id}/requests")]
         public async Task<ActionResult<List<Request>>> GetRequestsByTeamId(int id)

@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CreateTeam } from '../interfaces/create.team';
 import { User } from '../models/user';
+import { TeamMember } from '../models/teamMember';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class TeamService {
     )
   }
 
-  public getUsersByTeamId(id: number): Observable<User[]> {
-    return this.http.get<User[]>(
+  public getUsersByTeamId(id: number): Observable<TeamMember[]> {
+    return this.http.get<TeamMember[]>(
       `${environment.apiUrl}/team/${id}/users`
     )
   }

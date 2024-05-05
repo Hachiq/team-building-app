@@ -35,7 +35,7 @@
 }
 
 .table-content {
-    min-width: 55%;
+    min-width: 60%;
 }
 
 .header-row {
@@ -45,6 +45,11 @@
 .row:hover {
     cursor: pointer;
     background-color: #494545;
+}
+
+.blurred {
+    color: transparent;
+    text-shadow: 0 0 6px white;
 }
 
 .add-days-container {

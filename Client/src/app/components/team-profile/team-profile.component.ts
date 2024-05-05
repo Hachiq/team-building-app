@@ -7,6 +7,7 @@ import { RequestService } from 'src/app/services/request.service';
 import { TeamService } from 'src/app/services/team.service';
 import { TokenService } from 'src/app/services/token.service';
 import { StatsService } from 'src/app/services/stats.service';
+import { TeamMember } from 'src/app/models/teamMember';
 
 @Component({
   selector: 'app-team-profile',
@@ -17,10 +18,10 @@ export class TeamProfileComponent {
   teamId!: number;
 
   team!: Team;
-  users!: User[];
-  selection = new SelectionModel<User>(true, []);
+  users!: TeamMember[];
+  selection = new SelectionModel<TeamMember>(true, []);
 
-  displayedColumns: string[] = [ 'select', 'username', 'firstName', 'lastName', 'email'];
+  displayedColumns: string[] = [ 'select', 'username', 'firstName', 'lastName', 'salary', 'debt', 'isLeader'];
 
   constructor (private route: ActivatedRoute, private router: Router, private teamService: TeamService, private requestService: RequestService, private tokenService: TokenService, private statsService: StatsService) {
     route.params.subscribe(params => {
@@ -144,7 +145,7 @@ export class TeamProfileComponent {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: User): string {
+  checkboxLabel(row?: TeamMember): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }

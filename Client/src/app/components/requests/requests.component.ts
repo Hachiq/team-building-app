@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Request } from 'src/app/models/request';
@@ -22,6 +23,7 @@ export class RequestsComponent {
   displayedColumns: string[] = [ 'username', 'date', 'status', 'action'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private route: ActivatedRoute, private teamService: TeamService, private requestService: RequestService, public datePipe: DatePipe) {
     route.params.subscribe(params => {
@@ -70,6 +72,7 @@ export class RequestsComponent {
       .subscribe((result) => {
         this.dataSource = new MatTableDataSource<Request>(result);
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }
     );
   }

@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -62,6 +63,7 @@ import { TeamStatsComponent } from './components/team-stats/team-stats.component
     MatFormFieldModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
     MatMenuModule,
     MatExpansionModule,
     MatCheckboxModule,

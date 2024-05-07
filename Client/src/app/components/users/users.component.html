@@ -1,5 +1,11 @@
-<div class="container mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" >
+<div class="container">
+
+    <mat-form-field>
+        <mat-label>Search by name or email</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class=" mat-elevation-z8" >
     
         <ng-container matColumnDef="index">
             <th mat-header-cell *matHeaderCellDef></th>

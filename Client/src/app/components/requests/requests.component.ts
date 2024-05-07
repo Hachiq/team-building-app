@@ -25,6 +25,8 @@ export class RequestsComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  selectedFilterOption: string = 'all';
+
   constructor(private route: ActivatedRoute, private teamService: TeamService, private requestService: RequestService, public datePipe: DatePipe) {
     route.params.subscribe(params => {
       this.teamId = +params['id']; // Convert to number
@@ -75,5 +77,22 @@ export class RequestsComponent {
         this.dataSource.sort = this.sort;
       }
     );
+  }
+
+  applyFilter() {
+    switch (this.selectedFilterOption) {
+      case 'pending':
+        this.dataSource.filter = 'pending';
+        break;
+      case 'accepted':
+        this.dataSource.filter = 'accepted';
+        break;
+      case 'declined':
+        this.dataSource.filter = 'declined';
+        break;
+      default:
+        this.dataSource.filter = '';
+        break;
+    }
   }
 }

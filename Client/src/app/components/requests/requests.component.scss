@@ -14,6 +14,14 @@
     padding-top: 50px;
 }
 
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+}
+
 a {
     text-decoration: none;
     opacity: 80%;

@@ -19,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -67,7 +68,8 @@ import { TeamStatsComponent } from './components/team-stats/team-stats.component
     MatMenuModule,
     MatExpansionModule,
     MatCheckboxModule,
-    MatCardModule
+    MatCardModule,
+    MatRadioModule
   ],
   providers: [
     {

@@ -1,6 +1,16 @@
 <div class="container">
     <p class="title" *ngIf="team">Requests for {{team.name}}</p>
     <div class="requests-table">
+
+        <div class="filter-group">
+            <mat-radio-group [(ngModel)]="selectedFilterOption" (change)="applyFilter()">
+              <mat-radio-button value="all">All</mat-radio-button>
+              <mat-radio-button value="pending">Pending</mat-radio-button>
+              <mat-radio-button value="accepted">Accepted</mat-radio-button>
+              <mat-radio-button value="declined">Declined</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
         <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
 
             <ng-container matColumnDef="username">

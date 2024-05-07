@@ -9,6 +9,7 @@ import { TeamService } from 'src/app/services/team.service';
 import { TokenService } from 'src/app/services/token.service';
 import { StatsService } from 'src/app/services/stats.service';
 import { TeamMember } from 'src/app/models/teamMember';
+import { TeamStatsComponent } from '../team-stats/team-stats.component';
 
 @Component({
   selector: 'app-team-profile',
@@ -25,6 +26,8 @@ export class TeamProfileComponent {
   displayedColumns: string[] = [ 'select', 'username', 'firstName', 'lastName', 'salary', 'debt', 'isLeader'];
 
   @ViewChild(MatSort) sort!: MatSort;
+
+  @ViewChild(TeamStatsComponent) childComponent: TeamStatsComponent | undefined;
 
   constructor (private route: ActivatedRoute, private router: Router, private teamService: TeamService, private requestService: RequestService, private tokenService: TokenService, private statsService: StatsService) {
     route.params.subscribe(params => {
@@ -127,6 +130,8 @@ export class TeamProfileComponent {
     selectedUsers.forEach(user => {
       this.statsService.addDayWorked(user.id).subscribe();
     })
+
+    this.childComponent?.loadTeamStats();
   }
 
   addDayPaid(){
@@ -136,6 +141,8 @@ export class TeamProfileComponent {
     selectedUsers.forEach(user => {
       this.statsService.addDayPaid(user.id).subscribe();
     })
+
+    this.childComponent?.loadTeamStats();
   }
 
   isAllSelected() {

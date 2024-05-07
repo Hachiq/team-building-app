@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Team } from 'src/app/models/team';
-import { User } from 'src/app/models/user';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { RequestService } from 'src/app/services/request.service';
 import { TeamService } from 'src/app/services/team.service';
 import { TokenService } from 'src/app/services/token.service';
@@ -18,10 +19,12 @@ export class TeamProfileComponent {
   teamId!: number;
 
   team!: Team;
-  users!: TeamMember[];
+  dataSource!: MatTableDataSource<TeamMember>;
   selection = new SelectionModel<TeamMember>(true, []);
 
   displayedColumns: string[] = [ 'select', 'username', 'firstName', 'lastName', 'salary', 'debt', 'isLeader'];
+
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor (private route: ActivatedRoute, private router: Router, private teamService: TeamService, private requestService: RequestService, private tokenService: TokenService, private statsService: StatsService) {
     route.params.subscribe(params => {
@@ -88,7 +91,11 @@ export class TeamProfileComponent {
   loadUsers(id: number){
     this.teamService
       .getUsersByTeamId(id)
-      .subscribe((result) => this.users = result);
+      .subscribe((result) => {
+        this.dataSource = new MatTableDataSource<TeamMember>(result);
+        this.dataSource.sort = this.sort;
+      }
+    );
   }
 
   disband(){
@@ -130,7 +137,7 @@ export class TeamProfileComponent {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.users.length;
+    const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
@@ -141,7 +148,7 @@ export class TeamProfileComponent {
       return;
     }
 
-    this.selection.select(...this.users);
+    this.selection.select(...this.dataSource.data);
   }
 
   /** The label for the checkbox on the passed row */

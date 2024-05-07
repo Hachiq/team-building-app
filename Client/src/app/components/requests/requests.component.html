@@ -41,6 +41,12 @@
           
             <tr class="header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr class="row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">There are no {{selectedFilterOption}} users</td>
+            </tr>
+
         </table>
         <mat-paginator [pageSizeOptions]="[3, 5, 10]"
                     showFirstLastButtons

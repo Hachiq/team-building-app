@@ -35,6 +35,7 @@ export class TeamProfileComponent {
   ngOnInit(){
     this.loadTeam(this.teamId);
     this.loadUsers(this.teamId);
+    this.router.routeReuseStrategy.shouldReuseRoute = () => { return false; };
   }
 
   createRequest(){

@@ -93,7 +93,9 @@ export class TeamProfileComponent {
       .getUsersByTeamId(id)
       .subscribe((result) => {
         this.dataSource = new MatTableDataSource<TeamMember>(result);
-        this.dataSource.sort = this.sort;
+        if (this.isTeamMember()){
+          this.dataSource.sort = this.sort;
+        }
       }
     );
   }

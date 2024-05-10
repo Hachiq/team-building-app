@@ -33,6 +33,7 @@ import { TeamProfileComponent } from './components/team-profile/team-profile.com
 import { RequestsComponent } from './components/requests/requests.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TeamStatsComponent } from './components/team-stats/team-stats.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TeamStatsComponent } from './components/team-stats/team-stats.component
     TeamProfileComponent,
     RequestsComponent,
     UserProfileComponent,
-    TeamStatsComponent
+    TeamStatsComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

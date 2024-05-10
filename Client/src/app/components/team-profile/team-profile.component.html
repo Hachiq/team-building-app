@@ -15,12 +15,12 @@
     </div>
     <div class="spacer"></div>
     <div class="disband-button-section" *ngIf="canDisband()">
-      <button class="disband-button" mat-raised-button color="warn" (click)="disband()">
+      <button class="disband-button" mat-raised-button color="warn" (click)="openConfirmationDialogOnDisband()">
         Disband
       </button>
     </div>
     <div class="requests-button-section" *ngIf="canLeave()">
-      <button class="leave-button" mat-raised-button color="warn" (click)="leave()">
+      <button class="leave-button" mat-raised-button color="warn" (click)="openConfirmationDialogOnLeave()">
         Leave
       </button>
     </div>

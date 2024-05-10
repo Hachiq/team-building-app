@@ -1,0 +1,44 @@
+.container {
+    width: 270px;
+    height: 200px;
+    margin: 20px;
+}
+
+.title {
+    color: bisque;
+}
+
+.content {
+    color: white;
+}
+
+.actions {
+    padding-top: 20px;
+}
+
+button {
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#button-cancel {
+    background-color: rgba(255, 255, 255, 0.363) ;
+    transition: 100ms;
+}
+
+#button-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.51) ;
+    transition: 100ms;
+}
+
+#button-confirm {
+    color: red;
+    transition: 100ms;
+}
+
+#button-confirm:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    transition: 100ms;
+}

@@ -10,6 +10,8 @@ import { TokenService } from 'src/app/services/token.service';
 import { StatsService } from 'src/app/services/stats.service';
 import { TeamMember } from 'src/app/models/teamMember';
 import { TeamStatsComponent } from '../team-stats/team-stats.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-team-profile',
@@ -29,7 +31,13 @@ export class TeamProfileComponent {
 
   @ViewChild(TeamStatsComponent) childComponent: TeamStatsComponent | undefined;
 
-  constructor (private route: ActivatedRoute, private router: Router, private teamService: TeamService, private requestService: RequestService, private tokenService: TokenService, private statsService: StatsService) {
+  constructor(private route: ActivatedRoute, 
+              private router: Router, 
+              private teamService: TeamService, 
+              private requestService: RequestService, 
+              private tokenService: TokenService, 
+              private statsService: StatsService, 
+              private dialog: MatDialog) {
     route.params.subscribe(params => {
       this.teamId = +params['id']; // Convert to number
     });
@@ -110,10 +118,42 @@ export class TeamProfileComponent {
     });
   }
 
+  openConfirmationDialogOnDisband(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { 
+        message: 'Are you sure you want to disband your team?', 
+        consequences: 'All the stats for team and team members will be deleted.' 
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.disband();
+      } 
+      else return;
+    });
+  }
+
   leave(){
     this.teamService.leave(this.team.id, this.tokenService.getUserIdFromToken()).subscribe(() => {
       this.router.navigate(['teams'])
     })
+  }
+
+  openConfirmationDialogOnLeave(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { 
+        message: 'Are you sure you want to leave the team?', 
+        consequences: 'All your stats will be deleted.' 
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.leave();
+      } 
+      else return;
+    });
   }
 
   goToUserProfile(id: number) {

@@ -1,0 +1,11 @@
+<div class="container">
+  <h2 class="title" mat-dialog-title>Confirmation</h2>
+  <div class="content" mat-dialog-content>
+    <p>{{ data.message }}</p>
+    <p>{{ data.consequences }}</p>
+  </div>
+  <div class="actions" mat-dialog-actions>
+    <button id="button-cancel" mat-button mat-dialog-close cdkFocusInitial (click)="onCancel()">Cancel</button>
+    <button id="button-confirm" mat-button mat-dialog-close (click)="onConfirm()">Confirm</button>
+  </div>
+</div>
